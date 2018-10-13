@@ -1,0 +1,68 @@
+<% provide(:title, "Edit user") %>
+<div class="container">
+<%= render "shared/navbar" %>
+  <div class="row">
+    <div class="col-sm rounded shadow-sm">
+      <%= flash_messages %>
+      <h3>Edit Profile</h3>
+      <%= form_for(current_user) do |f| %>
+      <div class="form-group row">
+        <%= f.label :name, class: 'col-sm-3 col-form-label' %>
+        <div class="col-sm-7">
+          <%= f.text_field :name, class: 'form-control', style: 'text-transform: capitalize;' %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :shirt_size, class: 'col-sm-3 col-form-label' %>
+        <div class="col-sm-7">
+          <%= f.text_field :shirt_size, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :pant_size, class: 'col-sm-3 col-form-label' %>
+        <div class="col-sm-7">
+          <%= f.text_field :pant_size, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :shoe_size, class: 'col-sm-3 col-form-label' %>
+        <div class="col-sm-7">
+          <%= f.text_field :shoe_size, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :fav_color, class: 'col-sm-3 col-form-label' %>
+        <div class="col-sm-7">
+          <%= f.text_field :fav_color, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :password, class: 'col-sm-3 col-form-label' %>
+        <div class="col-sm-7">
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :password_confirmation, class: 'col-sm-3 col-form-label' %>
+        <div class="col-sm-7">
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :plus_one, class: 'col-sm-3 col-form-label' %>
+        <div class="col-sm-7 ml-0">
+          <div class="form-check">
+            <%= f.check_box :plus_one, class: 'form-check-input' %>
+            <%= f.label "I NOT MARRIED and am bringing a +1", class: 'form-check-label' %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-7">
+          <%= f.submit "Save changes", class: "btn btn-primary" %>
+        </div>
+      </div>      
+      <% end %>
+    </div>
+  </div>
+</div>

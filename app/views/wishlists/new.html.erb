@@ -1,0 +1,21 @@
+<% provide(:title, "Wishlist!") %>
+
+<div class="container">
+  <%= render "shared/navbar" %>
+
+  <div class="row">
+    <div class="col-sm shadow-sm rounded">
+      <%= flash_messages %>
+      <h3>Create your Wishlist</h2>
+      <%= form_for(@wishlist) do |f| %>
+      <div class="form-group row">
+        <%= f.label :name, class: 'col-sm-3 col-form-label' %>
+        <div class="col-sm-7">
+          <%= f.text_field :name, class: 'form-control', style: 'text-transform: capitalize;' %>
+        </div>
+      </div>
+      <%= f.hidden_field :user_id, value: current_user.id %>
+      <% end %>
+    </div>
+  </div>
+</div>

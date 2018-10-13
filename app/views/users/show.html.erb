@@ -1,0 +1,68 @@
+<% provide(:title, "My Profile") %>
+<div class="container">
+
+<%= render "shared/navbar" %>
+  <div class="row shadow-sm">
+    <div class="col">
+      <%= flash_messages %>
+
+      <h3>Profile Settings for <%= @user.name.capitalize! %></h3>
+      <table class="table mt-4">
+        <tbody>
+          <tr>
+            <td>Shirt Size</td>
+            <td><%= @user.shirt_size.blank? ? "⁉️" : @user.shirt_size  %></td>
+          </tr>
+          <tr>
+            <td>Pant Size</td>
+            <td><%= @user.pant_size.blank? ? "⁉️" : @user.pant_size %></td>
+          </tr>
+          <tr>
+            <td>Shoe Size</td>
+            <td><%= @user.shoe_size.blank? ? "⁉️" : @user.shoe_size %></td>
+          </tr>
+          <tr>
+            <td>Favourite Color</td>
+            <td><%= @user.fav_color.blank? ? "⁉️" : @user.fav_color %></td>
+          </tr>
+          <tr>
+            <td>Plus one?</td>
+            <td><%= @user.plus_one? ? "✅" : "⛔" %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col">
+              <% if !@user.no_chores? %>
+
+          <h3>Holiday Chores</h3>
+            <p>Complete the list of chores so you don't end up with a bunch of coal.</p>
+            <div class="list-group">
+              <% if !@user.profile_complete? %>
+                  <%= link_to :edit_user, class: 'list-group-item list-group-item-action' do %> 
+                    <span class="badge badge-dark mr-4">COAL</span>Complete your profile</a>
+                  <% end %>
+              <% end %>
+              <% if !@user.wishlist.present? %>
+                  <%= link_to :create_wishlist, class: 'list-group-item list-group-item-action' do %> 
+                    <span class="badge badge-dark mr-4">COAL</span>Create your wishlist</a>
+                  <% end %>
+              <% end %>
+              <% if !@user.gifts.any? %>
+                  <%= link_to :new_gift, class: 'list-group-item list-group-item-action' do %> 
+                    <span class="badge badge-dark mr-4">COAL</span>Add some gifts to your wishlist!</a>
+                  <% end %>
+              <% end %>
+            </div>
+          <% else %>
+          <h3>Quick Links</h3>
+            <nav class="nav flex-column">
+              <%= link_to 'Edit Profile', :edit_user, class: 'nav-link active' %>
+              <%= link_to "My Wishlist", :wishlist, class: 'nav-link' %>
+              <%= link_to "My Gifts", :new_gift, class: 'nav-link' %>
+              <%= link_to "Logout", logout_path, class: 'nav-link disabled' %>
+            </nav>
+          <% end %>
+    </div>
+  </div>
+</div>
