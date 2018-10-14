@@ -1,35 +1,12 @@
 <% provide(:title, "Wishlist!") %>
 
 <div class="container">
-  <%= render "shared/navbar" %>
+  <%= render "navbar" %>
 
   <div class="row">
-    <div class="col-sm px-4 py-3 shadow-sm rounded">
+    <div class="col shadow-sm">
       <%= flash_messages %>
-
-      <h4 class="mt-5"><%= @wishlist.user.name.capitalize! %>'s <%= @wishlist.name.titleize %> Wishlist</h3>
-      <div class="table-responsive-sm shadow-sm">
-        <table id="wishlist" class="table table-hover">
-          <thead class="thead-light">
-            <tr>
-              <th>Name</th>
-              <th>URL</th>
-              <th>Purchased</th>
-              <th>Spoken For</th>
-            </tr>
-          </thead>
-          <tbody>
-            <%   @wishlist.gifts.each do |gift| %>
-            <tr>
-              <td><%= gift.name %></td>
-              <td><%= link_to gift.url, gift.url %></td>
-              <td><%= gift.purchased_by ? "✅" : "⛔" %></td>
-              <td><%= gift.spoken_for_by ? "✅" : "⛔" %></td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
+      <%= render partial: "wl_table", locals: { wishlists: Array(@wishlist) } %>
     </div>
   </div>
 </div>

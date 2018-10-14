@@ -1,0 +1,27 @@
+<% wishlists.each do |wishlist| %>
+<div class="row mb-5 shadow-sm">
+  <div class="col">
+    <h5><%= wishlist.user.name.capitalize! %>'s <%= wishlist.name.titleize %> Wishlist</h5>
+      <table id="wishlist" class="table table-light">
+        <thead class="thead-light">
+          <tr>
+            <th>Name</th>
+            <th>URL</th>
+            <th>Purchased</th>
+            <th>Spoken For</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% wishlist.gifts.each do |gift| %>
+          <tr>
+            <td><%= gift.name %></td>
+            <td><%= link_to gift.url, gift.url %></td>
+            <td><%= gift.purchased_by ? "✅" : "⛔" %></td>
+            <td><%= gift.spoken_for_by ? "✅" : "⛔" %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>
+<% end %>

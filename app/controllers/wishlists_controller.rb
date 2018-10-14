@@ -16,7 +16,7 @@ class WishlistsController < ApplicationController
         if @wishlist.save
           # If user saves in the db successfully:
           flash[:notice] = "Wishlist created!"
-          redirect_to @wishlist
+          redirect_to @wishlist.user
         else
           # If wishlist fails model validation: probably name
           flash.now.alert = "Oops, couldn't create wishlist."

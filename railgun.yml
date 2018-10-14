@@ -1,4 +1,3 @@
-# https://development.shopify.io/tools/dev/railgun/Railgun-Config
 name: wishlist
 
 vm:
@@ -11,18 +10,7 @@ volumes:
   root:  '2G'
 
 services:
-  - redis
-  - memcached
-  # - toxiproxy
-  - mysql
-  # - elasticsearch
-  # - zookeeper
-  # - argus
-  # - magellan
-  # - imagery
   - nginx
-  # - kafka
 
 hostnames:
   - wishlist.myshopify.io: { proxy_to_host_port: 21120 }
-
