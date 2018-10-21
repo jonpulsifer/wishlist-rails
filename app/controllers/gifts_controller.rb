@@ -38,7 +38,7 @@ class GiftsController < ApplicationController
       def update
         @gift = Gift.find(params[:id])
         if @gift.update_attributes(gift_params)
-          redirect_to user_path
+          redirect_back(fallback_location: root_path)
         else
           render :edit
         end

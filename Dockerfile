@@ -7,4 +7,4 @@ RUN bundle install --jobs 4
 
 # Copy the application into the container
 COPY . /app
-EXPOSE 3000
+EXPOSE 8080

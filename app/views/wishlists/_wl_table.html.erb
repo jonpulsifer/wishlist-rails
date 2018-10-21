@@ -11,7 +11,7 @@
           <tr>
             <th class="mdl-data-table__cell--non-numeric">Name</th>
             <th class="mdl-data-table__cell--non-numeric">URL</th>
-            <th class="mdl-data-table__cell--non-numeric">Claim Gift</th>
+            <th class="mdl-data-table__cell--non-numeric"></th>
           </tr>
         </thead>
         <tbody>
@@ -19,10 +19,7 @@
           <tr>
             <td class="mdl-data-table__cell--non-numeric"><%= gift.name %></td>
             <td class="mdl-data-table__cell--non-numeric"><%= link_to gift.url, gift.url %></td>
-            <td class="mdl-data-table__cell--non-numeric">
-              <%= gift.spoken_for_by ? link_to("claim","#", class: "mdl-button mdl-js-button mdl-button--raised mdl-button--disabled") : link_to("claim", gift_path(action: :update, gift: gift, id: gift.id, spoken_for_by: user.id), method: :put, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored") %>
-
-            </td>
+            <td class="mdl-data-table__cell--non-numeric"><%= render "button-claim", gift: gift, wishlist: wishlist, user: wishlist.user %></td>
           </tr>
           <% end %>
         </tbody>

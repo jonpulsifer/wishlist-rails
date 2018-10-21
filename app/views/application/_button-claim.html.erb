@@ -1,0 +1,24 @@
+<% if current_user == user %>
+  <% if gift.spoken_for_by? %>
+    <span class="mdl-button mdl-js-button mdl-button--disabled">delete</span>
+  <% else %>
+    <%= link_to "delete", gift, method: :delete, class: "mdl-button mdl-js-button mdl-button--accent" %>
+  <% end %>
+<% else %>
+  <% if !gift.spoken_for_by? %>
+    <%= form_for(gift) do |f| %>
+    <%= f.hidden_field :spoken_for_by, value: current_user.id %>
+    <%= f.submit "claim", class: "mdl-button mdl-js-button mdl-button--colored" %>
+    <% end %>
+  <% else %>
+    <% if gift.spoken_for_by == current_user.id %>
+    <%= form_for(gift) do |f| %>
+    <%= f.hidden_field :spoken_for_by, value: nil %>
+    <%= f.submit "unclaim", class: "mdl-button mdl-js-button mdl-button--accent" %>
+    <% end %>
+
+    <% else %>
+      <span class="mdl-button mdl-js-button mdl-button--disabled">claim</span>
+    <% end %>
+  <% end %>
+<% end %>

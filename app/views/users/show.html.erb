@@ -14,6 +14,8 @@
         <% end %>
         <% if !@user.wishlist.present? %>
           <%= render 'card-create-wishlist' %>
+        <% else %>
+          <%= render 'card-wishlist', user: @user %>
         <% end %>
         <% if !@user.gifts.any? %>
           <%= render 'card-add-gifts' %>
