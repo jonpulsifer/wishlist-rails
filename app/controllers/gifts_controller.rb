@@ -21,7 +21,7 @@ class GiftsController < ApplicationController
             for message_error in @gift.errors.full_messages
               flash.now.alert = "#{message_error}"
             end
-          
+
           end
           render :new
         end
@@ -38,7 +38,7 @@ class GiftsController < ApplicationController
       def update
         @gift = Gift.find(params[:id])
         if @gift.update_attributes(gift_params)
-          redirect_to @gift
+          redirect_to user_path
         else
           render :edit
         end
@@ -55,10 +55,10 @@ class GiftsController < ApplicationController
       end
 
     private
-    
+
       def gift_params
         # strong parameters - whitelist of allowed fields #=> permit(:name, :email, ...)
         # that can be submitted by a form to the user model #=> require(:user)
-        params.require(:gift).permit(:name, :url, :purchased_by, :spoken_for_by, :wishlist_id)
+      params.require(:gift).permit(:name, :url, :purchased_by, :spoken_for_by, :wishlist_id, :id, :gift)
       end
 end

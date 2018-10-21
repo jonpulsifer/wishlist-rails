@@ -51,13 +51,13 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
-  config.public_file_server.enabled = true 
+  config.public_file_server.enabled = true
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
   # allow web console from my home net
-  config.web_console.whitelisted_ips = '192.168.64.0/24'
+  config.web_console.whitelisted_ips = ["192.168.64.0/24","172.217.13.180/32","76.69.152.217/32"]
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.

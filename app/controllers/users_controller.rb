@@ -1,17 +1,16 @@
 class UsersController < ApplicationController
     before_action :logged_in_user, only: [:edit, :show, :update]
-    layout 'sessions', only: [:new]
 
     def new
         @user = User.new
     end
-    
+
     def create
         @user = User.new(user_params)
-        
+
         # store all names in lowercase to avoid duplicates and case-sensitive login errors:
         @user.name.downcase!
-        
+
         if @user.save
           # If user saves in the db successfully:
           flash[:notice] = "Account created successfully!"
@@ -24,7 +23,7 @@ class UsersController < ApplicationController
             for message_error in @user.errors.full_messages
               flash.now.alert = "#{message_error}"
             end
-          
+
           end
           render :new
         end
@@ -48,7 +47,7 @@ class UsersController < ApplicationController
       end
 
     private
-    
+
       def user_params
         # strong parameters - whitelist of allowed fields #=> permit(:name, :email, ...)
         # that can be submitted by a form to the user model #=> require(:user)

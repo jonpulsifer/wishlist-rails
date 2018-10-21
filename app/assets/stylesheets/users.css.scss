@@ -1,40 +1,23 @@
-body {
-  display: flex;
+.login > .mdl-card__title {
+  height: 150px;
+  background-image: url('/images/santa.png');
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+.santa > .mdl-card__title {
+  height: 170px;
+  background-image: url('/images/santadab2.png');
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 
-  .checkbox {
-    font-weight: 400;
-  }
-
-  .form-control {
-    position: relative;
-    box-sizing: border-box;
-    height: auto;
-    padding: 10px;
-    font-size: 16px;
-
-    &:focus {
-      z-index: 2;
-    }
-  }
-
-  input {
-    &[type="text"] {
-      margin-bottom: -1px;
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-
-    &[type="password"] {
-      margin-bottom: 10px;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
-  }
+.profile > .mdl-card__title {
+  height: 170px;
+  background-image: url('/images/clothes.png');
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }

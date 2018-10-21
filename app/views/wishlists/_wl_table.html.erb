@@ -1,27 +1,36 @@
 <% wishlists.each do |wishlist| %>
-<div class="row mb-5 shadow-sm">
-  <div class="col">
-    <h5><%= wishlist.user.name.capitalize! %>'s <%= wishlist.name.titleize %> Wishlist</h5>
-      <table id="wishlist" class="table table-light">
+<section class="section--center mdl-grid mdl-grid--no-spacing" style="padding:20px;">
+  <div class="mdl-cell mdl-cell--8-col">
+  <div class="mdl-card mdl-cell mdl-cell--12-col mdl-shadow--8dp">
+    <div class="mdl-card__title">
+      <h3 class="mdl-card__title-text"><%= wishlist.user.name.capitalize! %>'s <%= wishlist.name.titleize %> Wishlist</h3>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <table id="wishlist" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead class="thead-light">
           <tr>
-            <th>Name</th>
-            <th>URL</th>
-            <th>Purchased</th>
-            <th>Spoken For</th>
+            <th class="mdl-data-table__cell--non-numeric">Name</th>
+            <th class="mdl-data-table__cell--non-numeric">URL</th>
+            <th class="mdl-data-table__cell--non-numeric">Claim Gift</th>
           </tr>
         </thead>
         <tbody>
           <% wishlist.gifts.each do |gift| %>
           <tr>
-            <td><%= gift.name %></td>
-            <td><%= link_to gift.url, gift.url %></td>
-            <td><%= gift.purchased_by ? "✅" : "⛔" %></td>
-            <td><%= gift.spoken_for_by ? "✅" : "⛔" %></td>
+            <td class="mdl-data-table__cell--non-numeric"><%= gift.name %></td>
+            <td class="mdl-data-table__cell--non-numeric"><%= link_to gift.url, gift.url %></td>
+            <td class="mdl-data-table__cell--non-numeric">
+              <%= gift.spoken_for_by ? link_to("claim","#", class: "mdl-button mdl-js-button mdl-button--raised mdl-button--disabled") : link_to("claim", gift_path(action: :update, gift: gift, id: gift.id, spoken_for_by: user.id), method: :put, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored") %>
+
+            </td>
           </tr>
           <% end %>
         </tbody>
       </table>
+    </div>
+    <div class="mdl-card__actions">
+      <a href="#" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">View <%= wishlist.user.name %>'s profile</a>
+    </div>
   </div>
-</div>
+</section>
 <% end %>

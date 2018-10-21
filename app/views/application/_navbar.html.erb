@@ -1,13 +1,20 @@
-<nav class="navbar navbar-expand mb-3">
-  <%= link_to "🎅 h0 h0 h0", root_path, class: "navbar-brand" %>
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-      <%= link_to "Wishlists", wishlists_path, class: "nav-link" %>
-    </li>
-    <% if current_user %>
-    <li class="nav-item">
-      <%= link_to "My Profile", current_user, class: 'nav-link' %>
-    </li>
-    <% end %>
-  </ul>
-</nav>
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">🎅 Wishlist 🎄</span>
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation. We hide it in small screens. -->
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <%= link_to 'Home', user_path(@user), class: "mdl-navigation__link" %>
+        <%= link_to 'Wishlists', wishlists_path, class: "mdl-navigation__link" %>
+        <%= link_to "Logout", logout_path, class: "mdl-navigation__link" %>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">🎅 Wishlist</span>
+    <nav class="mdl-navigation">
+        <%= link_to 'Home', user_path(@user), class: "mdl-navigation__link" %>
+        <%= link_to 'Wishlists', wishlists_path, class: "mdl-navigation__link" %>
+      <%= link_to "Logout", logout_path, class: "mdl-navigation__link" %>
+    </nav>
+  </div>

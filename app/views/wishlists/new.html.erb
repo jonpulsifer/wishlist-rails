@@ -1,7 +1,7 @@
 <% provide(:title, "Wishlist!") %>
 
 <div class="container">
-  <%= render "navbar" %>
+  <%= render "navbar", locals: {user: @user} %>
 
   <div class="row">
     <div class="col-sm shadow-sm rounded">

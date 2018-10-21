@@ -2,16 +2,19 @@ class WishlistsController < ApplicationController
     before_action :logged_in_user
 
     def index
+        @user = current_user
         @my_wishlist = current_user.wishlist
         @others_wishlists = Wishlist.where("user_id != #{current_user.id}")
     end
 
     def new
+        @user = current_user
         @wishlist = Wishlist.new
         @wishlist.user = current_user
     end
 
    def create
+        @user = current_user
         @wishlist = Wishlist.new(wishlist_params)
         if @wishlist.save
           # If user saves in the db successfully:
@@ -24,7 +27,7 @@ class WishlistsController < ApplicationController
             for message_error in @wishlist.errors.full_messages
               flash.now.alert = "#{message_error}"
             end
-          
+
           end
           render :new
         end
@@ -35,10 +38,12 @@ class WishlistsController < ApplicationController
       end
 
       def show
+        @user = current_user
         @wishlist = Wishlist.find(params[:id])
       end
 
       def update
+        @user = current_user
         @wishlist = Wishlist.find(params[:id])
         if @wishlist.update_attributes(wishlist_params)
           redirect_to @wishlist
@@ -48,7 +53,7 @@ class WishlistsController < ApplicationController
       end
 
     private
-    
+
       def wishlist_params
         # strong parameters - whitelist of allowed fields #=> permit(:name, :email, ...)
         # that can be submitted by a form to the user model #=> require(:user)

@@ -1,13 +1,8 @@
 <% provide(:title, "Wishlist!") %>
-
-<div class="container">
-  <%= render "navbar" %>
-  <div class="row">
-    <div class="col shadow-sm">
-      <%= flash_messages %>
-      <h3>Wishlists</h2>
-      <p>Below you'll find everyone's wishlist!</p>
-      <%= render partial: "wl_table", locals: { wishlists: @others_wishlists } %>
-    </div>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <%= render "navbar", locals: { user: @user } %>
+  <main class="mdl-layout-content">
+    <%= flash_messages %>
+        <%= render partial: "wl_table", locals: { wishlists: @others_wishlists, user: @user } %>
   </div>
 </div>
