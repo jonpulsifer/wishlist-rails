@@ -1,10 +1,11 @@
-<div class="mdl-cell">
+<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
   <div class="profile mdl-card mdl-shadow--8dp">
-    <div class="mdl-card__title mdl-color--green-900 mdl-color-text--white">
-      <h3 class="mdl-card__title-text">Unfinished Profile 👤</h3>
+    <div class="mdl-card__title mdl-color--green-300 mdl-color-text--white">
+      <h3 class="mdl-card__title-text">Incomplete Profile 👤</h3>
     </div>
     <div class="mdl-card__supporting-text">
-      <h6>Complete your profile</h6>
+      <h6>It looks like you need to <%= link_to "complete your profile", edit_user_url(@user) %>.</h6>
+      <h6>Completing your profile makes it easy for people to buy you things in the right size!</h6>
     </div>
     <div class="mdl-card__actions mdl-card--border">
     <%= link_to "Edit Profile", edit_user_url(@user), class: "mdl-button mdl-button--colored mdl-js-button mdl-js-button-effect" %>

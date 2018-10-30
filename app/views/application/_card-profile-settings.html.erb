@@ -1,9 +1,10 @@
-<div class="mdl-cell">
+<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
   <div class="mdl-card mdl-shadow--8dp">
     <div class="mdl-card__title mdl-color--light-blue-600 mdl-color-text--white">
       <h3 class="mdl-card__title-text"><%= @user.name.capitalize! %>'s Profile 🎁</h3>
     </div>
     <div class="mdl-card__supporting-text">
+      <h6>This is <%= current_user == @user ? "your" : "#{@user.name.capitalize!}'s" %> profile. Below you will find that your profile is displayed.</h6>
       <table style="width:100%;" class="table mdl-data-table mdl-js-data-table mdl-shadow--2dp">
         <thead>
           <tr>

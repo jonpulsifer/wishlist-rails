@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
 
-        # store all names in lowercase to avoid duplicates and case-sensitive login errors:
+        # store all names in lowercase to avoid duplicates and case-sensitive login errors
         @user.name.downcase!
 
         if @user.save
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
           log_in(@user)
           redirect_to @user
         else
-          # If user fails model validation - probably a bad password or duplicate email:
+          # If user fails model validation - probably a bad password or duplicate name
           flash.now.alert = "Oops, couldn't create account."
           if @user.errors.any?
             for message_error in @user.errors.full_messages

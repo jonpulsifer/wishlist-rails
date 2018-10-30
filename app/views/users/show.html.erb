@@ -1,7 +1,7 @@
 <% provide(:title, "My Profile") %>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <%= render "navbar" %>
-  <main class="mdl-layout-content">
+  <main class="mdl-layout__content">
     <%= flash_messages %>
     <div class="page-content">
       <div class="mdl-grid">
@@ -17,7 +17,7 @@
         <% else %>
           <%= render 'card-wishlist', user: @user %>
         <% end %>
-        <% if !@user.gifts.any? %>
+        <% if !@user.gifts.any? && @user.wishlist.present? %>
           <%= render 'card-add-gifts' %>
         <% end %>
       </div>

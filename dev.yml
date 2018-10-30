@@ -16,4 +16,4 @@ commands:
   console: bin/rails console
 
 open:
-  "wishlist": https://wishlist.myshopify.io
+  "app": https://wishlist.myshopify.io

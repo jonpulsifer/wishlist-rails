@@ -1,24 +1,21 @@
 <% wishlists.each do |wishlist| %>
-<section class="section--center mdl-grid mdl-grid--no-spacing" style="padding:20px;">
-  <div class="mdl-cell mdl-cell--8-col">
-  <div class="mdl-card mdl-cell mdl-cell--12-col mdl-shadow--8dp">
+<div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+  <div class="mdl-card mdl-shadow--8dp">
     <div class="mdl-card__title">
       <h3 class="mdl-card__title-text"><%= wishlist.user.name.capitalize! %>'s <%= wishlist.name.titleize %> Wishlist</h3>
     </div>
     <div class="mdl-card__supporting-text">
-      <table id="wishlist" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+      <table id="wishlist" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:100%;">
         <thead class="thead-light">
           <tr>
-            <th class="mdl-data-table__cell--non-numeric">Name</th>
-            <th class="mdl-data-table__cell--non-numeric">URL</th>
+            <th class="mdl-data-table__cell--non-numeric">Item</th>
             <th class="mdl-data-table__cell--non-numeric"></th>
           </tr>
         </thead>
         <tbody>
           <% wishlist.gifts.each do |gift| %>
           <tr>
-            <td class="mdl-data-table__cell--non-numeric"><%= gift.name %></td>
-            <td class="mdl-data-table__cell--non-numeric"><%= link_to gift.url, gift.url %></td>
+            <td class="mdl-data-table__cell--non-numeric"><%= link_to gift.name, gift.url %></td>
             <td class="mdl-data-table__cell--non-numeric"><%= render "button-claim", gift: gift, wishlist: wishlist, user: wishlist.user %></td>
           </tr>
           <% end %>
@@ -26,8 +23,8 @@
       </table>
     </div>
     <div class="mdl-card__actions">
-      <a href="#" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">View <%= wishlist.user.name %>'s profile</a>
+      <%= button_to "View " + wishlist.user.name + "'s profile", user_path(wishlist.user), class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
     </div>
   </div>
-</section>
+</div>
 <% end %>

@@ -1,10 +1,10 @@
-<div class="mdl-cell">
+<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
   <div class="mdl-card mdl-shadow--8dp">
-    <div class="mdl-card__title mdl-color--green-300 mdl-color-text--white">
+    <div class="mdl-card__title mdl-color--green-900 mdl-color-text--white">
       <h3 class="mdl-card__title-text">Create a Wishlist 📋</h3>
     </div>
     <div class="mdl-card__supporting-text">
-      <h6>Create your wishlist and give it a fun name!</h6>
+      <h6>It looks like you need to <%= link_to "create a wishlist", new_wishlist_path(@user) %>. You can only add gifts to a wishlist, so if you want anything for Christmas you should probably make one!</h6>
     </div>
     <div class="mdl-card__actions mdl-card--border">
     <%= link_to "Create Wishlist", new_wishlist_path(@user), class: "mdl-button mdl-button--colored mdl-js-button mdl-js-button-effect" %>
