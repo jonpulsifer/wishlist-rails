@@ -27,5 +27,5 @@ production:
   <<: *default
   username: <%= ENV['MYSQL_USERNAME'] %>
   password: <%= ENV['MYSQL_PASSWORD'] %>
-  database: <%= ENV['MYSQL_DATABASE']
+  database: <%= ENV['MYSQL_DATABASE'] %>
   host: <%= ENV['MYSQL_HOSTNAME'] %>
