@@ -1,5 +1,5 @@
 FROM ruby:2.5-alpine
-RUN apk add --no-cache --update build-base linux-headers git nodejs myql-dev tzdata
+RUN apk add --no-cache --update build-base linux-headers git nodejs mariadb-dev tzdata
 
 WORKDIR /app
 COPY Gemfile Gemfile.lock /app/
