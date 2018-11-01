@@ -1,7 +1,10 @@
 FROM ruby:2.5
 RUN apt-get -qqy update && \
-    apt-get -qqy upgrade && \
-    apt-get -qqy install nodejs
+    apt-get -qqy upgrade
+
+# node 10
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get -qqy install nodejs
 
 
 WORKDIR /app

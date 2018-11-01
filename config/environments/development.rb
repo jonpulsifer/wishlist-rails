@@ -1,6 +1,17 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  # google cloud
 
+  config.google_cloud.use_debugger = true
+  config.google_cloud.debugger.service_name = Rails.application.class.parent.to_s.underscore
+  config.google_cloud.debugger.service_version = "development"
+
+  config.google_cloud.use_error_reporting = true
+
+  config.google_cloud.use_logging = true
+  config.google_cloud.logging.log_name = RRails.application.class.parent.to_s.underscore
+
+  config.google_cloud.use_trace = true
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
