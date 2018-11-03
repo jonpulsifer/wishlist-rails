@@ -33,6 +33,7 @@ class GiftsController < ApplicationController
 
       def show
         @gift = Gift.find(params[:id])
+        @user = User.find_by(id: @gift.wishlist.user_id)
       end
 
       def update
@@ -59,6 +60,6 @@ class GiftsController < ApplicationController
       def gift_params
         # strong parameters - whitelist of allowed fields #=> permit(:name, :email, ...)
         # that can be submitted by a form to the user model #=> require(:user)
-      params.require(:gift).permit(:name, :url, :purchased_by, :spoken_for_by, :wishlist_id, :id, :gift)
+      params.require(:gift).permit(:name, :url, :notes, :claimed_by, :wishlist_id, :id, :gift)
       end
 end

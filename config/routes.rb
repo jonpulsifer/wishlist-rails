@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root to: 'wishlists#index'
+  root to: 'users#index'
 
   # users
   resources :users
@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   get '/auth/logout' => 'sessions#destroy', as: 'logout'
   
   # wishlists
-  get '/wishlist' => 'wishlist#index'
+  get '/' => 'users#index'
 end

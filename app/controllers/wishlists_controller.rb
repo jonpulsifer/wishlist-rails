@@ -1,12 +1,6 @@
 class WishlistsController < ApplicationController
     before_action :logged_in_user
 
-    def index
-        @user = current_user
-        @my_wishlist = current_user.wishlist
-        @others_wishlists = Wishlist.where("user_id != #{current_user.id}")
-    end
-
     def new
         @user = current_user
         @wishlist = Wishlist.new

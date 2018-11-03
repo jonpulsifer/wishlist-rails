@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
-    before_action :logged_in_user, only: [:edit, :show, :update]
+    before_action :logged_in_user, only: [:index, :edit, :show, :update]
 
     def new
         @user = User.new
+    end
+
+    def index
+        @user = current_user
+        @users = User.all
     end
 
     def create
@@ -15,6 +20,7 @@ class UsersController < ApplicationController
           # If user saves in the db successfully:
           flash[:notice] = "Account created successfully!"
           log_in(@user)
+          Wishlist.new(name: "Christmas", user_id: @user.id).save!
           redirect_to @user
         else
           # If user fails model validation - probably a bad password or duplicate name
@@ -35,6 +41,7 @@ class UsersController < ApplicationController
 
       def show
         @user = User.find(params[:id])
+        @users = User.all
       end
 
       def update
@@ -51,7 +58,7 @@ class UsersController < ApplicationController
       def user_params
         # strong parameters - whitelist of allowed fields #=> permit(:name, :email, ...)
         # that can be submitted by a form to the user model #=> require(:user)
-        params.require(:user).permit(:name, :password, :password_confirmation, :shirt_size, :pant_size, :shoe_size, :fav_color, :plus_one)
+        params.require(:user).permit(:name, :password, :password_confirmation)
       end
 
 end

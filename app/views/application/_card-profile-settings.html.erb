@@ -4,37 +4,7 @@
       <h3 class="mdl-card__title-text"><%= @user.name.capitalize! %>'s Profile 🎁</h3>
     </div>
     <div class="mdl-card__supporting-text">
-      <h6>This is <%= current_user == @user ? "your" : "#{@user.name.capitalize!}'s" %> profile. Below you will find that your profile is displayed.</h6>
-      <table style="width:100%;" class="table mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-        <thead>
-          <tr>
-            <th class="mdl-data-table__cell--non-numeric">Item</th>
-            <th class="mdl-data-table__cell--non-numeric">Size</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="mdl-data-table__cell--non-numeric">Shirt Size</td>
-            <td class="mdl-data-table__cell--non-numeric"><%= @user.shirt_size.blank? ? "⁉️" : @user.shirt_size  %></td>
-          </tr>
-          <tr>
-            <td class="mdl-data-table__cell--non-numeric">Pant Size</td>
-            <td class="mdl-data-table__cell--non-numeric"><%= @user.pant_size.blank? ? "⁉️" : @user.pant_size %></td>
-          </tr>
-          <tr>
-            <td class="mdl-data-table__cell--non-numeric">Shoe Size</td>
-            <td class="mdl-data-table__cell--non-numeric"><%= @user.shoe_size.blank? ? "⁉️" : @user.shoe_size %></td>
-          </tr>
-          <tr>
-            <td class="mdl-data-table__cell--non-numeric">Favourite Color</td>
-            <td class="mdl-data-table__cell--non-numeric"><%= @user.fav_color.blank? ? "⁉️" : @user.fav_color %></td>
-          </tr>
-          <tr>
-            <td class="mdl-data-table__cell--non-numeric">Plus one?</td>
-            <td class="mdl-data-table__cell--non-numeric"><%= @user.plus_one? ? "✅" : "⛔" %></td>
-          </tr>
-        </tbody>
-      </table>
+      <h6>This is <%= current_user == @user ? "your" : @user.name.capitalize + "'s" %> profile. Below you will find that <%= current_user == @user ? "your" : @user.name.capitalize + "'s" %> profile is displayed.</h6>
     </div>
     <div class="mdl-card__actions mdl-card--border">
     <%= link_to "Edit Profile", :edit_user, class: "mdl-button mdl-button--colored mdl-js-button mdl-js-button-effect" %>

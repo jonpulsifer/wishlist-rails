@@ -1,0 +1,13 @@
+<% provide(:title, @gift.name) %>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <%= render "navbar" %>
+  <main class="mdl-layout__content">
+    <%= flash_messages %>
+    <div class="page-content">
+      <div class="mdl-grid">
+        <%= render 'card-gift', gift: @gift %>
+        <%= render 'card-wishlist', user: @user %>
+      </div>
+    </div>
+  </main>
+</div>

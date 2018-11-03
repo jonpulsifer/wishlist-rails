@@ -1,0 +1,21 @@
+<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+  <div class="santa mdl-card mdl-shadow--8dp">
+    <div class="mdl-card__title mdl-color--green-800 mdl-color-text--white">
+      <h3 class="mdl-card__title-text"><%= gift.name %></h3>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <% if gift.url? %>
+        <h6>Link:</h6>
+        <%= link_to gift.url, gift.url %>
+      <% end %>
+      <% if gift.notes? %>
+        <h6>Notes:</h6>
+        <%= gift.notes %>
+      <% end %>
+
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+        <%= render "button-claim", gift: gift, user: @user %>
+    </div>
+  </div>
+</div>

@@ -8,32 +8,12 @@
       <ul class="demo-list-icon mdl-list">
         <li class="mdl-list__item">
           <span class="mdl-list__item-primary-content">
-            <% if !@user.profile_complete? %>
-            <i class="material-icons mdl-list__item-icon mdl-color-text--orange">info</i>
-            <% else %>
-            <i class="material-icons mdl-list__item-icon mdl-color-text--green">check_circle</i>
-            <% end %>
-              Complete your profile
-          </span>
-        </li>
-        <li class="mdl-list__item">
-          <span class="mdl-list__item-primary-content">
-            <% if !@user.wishlist.present? %>
-            <i class="material-icons mdl-list__item-icon mdl-color-text--orange">info</i>
-            <% else %>
-            <i class="material-icons mdl-list__item-icon mdl-color-text--green">check_circle</i>
-            <% end %>
-            Create a wishlist
-          </span>
-        </li>
-        <li class="mdl-list__item">
-          <span class="mdl-list__item-primary-content">
             <% if @user.wishlist.present? || !@user.gifts.any? %>
             <i class="material-icons mdl-list__item-icon mdl-color-text--orange">info</i>
             <% else %>
             <i class="material-icons mdl-list__item-icon mdl-color-text--green">check_circle</i>
             <% end %>
-            Add gifts to wishlist
+            Add some gifts to your Christmas wishlist
           </span>
         </li>
       </ul>

@@ -5,21 +5,12 @@
     <%= flash_messages %>
     <div class="page-content">
       <div class="mdl-grid">
-        <%= render 'card-profile-settings' %>
-        <% if !@user.no_chores? %>
-          <%= render 'card-chores' %>
-        <% end %>
-        <% if !@user.profile_complete? %>
-          <%= render 'card-profile-completion' %>
-        <% end %>
         <% if !@user.wishlist.present? %>
           <%= render 'card-create-wishlist' %>
         <% else %>
           <%= render 'card-wishlist', user: @user %>
         <% end %>
-        <% if !@user.gifts.any? && @user.wishlist.present? %>
-          <%= render 'card-add-gifts' %>
-        <% end %>
+          <%= render 'card-user-list', card_for: @users %>
       </div>
     </div>
   </main>
