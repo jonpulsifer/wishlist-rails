@@ -21,7 +21,26 @@ carol.build_wishlist(name: "Spoiled Rotten").save!
 
 
 puts "Seeding Gifts"
-alice.wishlist.gifts.new(name: "Snow Shovel", url: "https://www.amazon.ca/gp/product/B01LXEQ6UM").save!
-bob.wishlist.gifts.new(name: "Fingerless Gloves", url: "https://www.amazon.ca/dp/B0057XA2KS").save!
-carol.wishlist.gifts.new(name: "Knockoff Handbag", url: "https://you.got.scammed.br").save!
-carol.wishlist.gifts.new(name: "Fingerless Gloves", url: "https://www.amazon.ca/dp/B0057XA2KS").save!
+alice.wishlist.gifts.new(
+  name: "Snow Shovel",
+  url: "https://www.amazon.ca/gp/product/B01LXEQ6UM",
+  notes: "I'm anticipating a lot of snow this year"
+).save!
+
+bob.wishlist.gifts.new(
+  name: "Fingerless Gloves",
+  url: "https://www.amazon.ca/dp/B0057XA2KS",
+  notes: "I'm sort of against mittens, I also have small hands."
+).save!
+
+carol.wishlist.gifts.new(
+  name: "Knockoff Handbag",
+  url: "https://you.got.scammed.br",
+  notes: "ALL MY LINKS ARE FROM AMAZON.COM"
+).save!
+
+carol.wishlist.gifts.new(
+  name: "Fingerless Gloves",
+  url: "https://www.amazon.ca/dp/B0057XA2KS",
+  notes: "I want what Bob has!"
+).save!
