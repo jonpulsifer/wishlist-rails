@@ -2,5 +2,19 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args: ['pull', 'gcr.io/$PROJECT_ID/wishlist']
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--cache-from', 'gcr.io/$PROJECT_ID/wishlist', '-t', 'gcr.io/$PROJECT_ID/wishlist', '.']
-images: ['gcr.io/$PROJECT_ID/wishlist']
+  args: ['build', '--cache-from', 'gcr.io/$PROJECT_ID/wishlist', '-t', 'gcr.io/$PROJECT_ID/wishlist:$COMMIT_SHA', '-t', 'gcr.io/$PROJECT_ID/wishlist', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/wishlist:$COMMIT_SHA']
+- name: 'gcr.io/cloud-builders/gsutil'
+  args: ['cp', 'gs://cloud-lab/kubeconfig.yml', '.']
+- name: 'gcr.io/trusted-builds/kubernetes-deploy'
+  args: ['${_NAMESPACE}', '${_CONTEXT}']
+  env:
+  - 'KUBECONFIG=kubeconfig.yml'
+  - 'ENVIRONMENT=production'
+  - 'REVISION=$COMMIT_SHA'
+substitutions:
+  _CONTEXT: cloudlab
+  _NAMESPACE: wishlist
+images:
+- gcr.io/$PROJECT_ID/wishlist

@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_08_214530) do
+ActiveRecord::Schema.define(version: 2018_11_04_200503) do
 
-  create_table "gifts", force: :cascade do |t|
+  create_table "gifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
-    t.string "url"
+    t.text "url"
     t.text "notes"
     t.integer "claimed_by"
     t.integer "wishlist_id"
@@ -23,14 +23,14 @@ ActiveRecord::Schema.define(version: 2018_10_08_214530) do
     t.index ["wishlist_id"], name: "index_gifts_on_wishlist_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "wishlists", force: :cascade do |t|
+  create_table "wishlists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
     t.datetime "created_at", null: false
