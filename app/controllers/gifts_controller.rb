@@ -28,7 +28,7 @@ class GiftsController < ApplicationController
       end
 
       def edit
-        @gift = Gift.find_by(params[:id])
+        @gift = Gift.find(params[:id])
       end
 
       def show
