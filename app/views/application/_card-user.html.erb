@@ -1,36 +1,31 @@
-<div class="mdl-cell mdl-cell--3-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-  <div class="<%= ["santa","holly"].sample %> mdl-card mdl-shadow--8dp">
+<div class="mdl-cell mdl-cell--5-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+  <div class="mdl-card mdl-shadow--8dp">
     <div class="mdl-card__title mdl-color--<%= ["red","green"].sample %>-800 mdl-color-text--white">
       <h3 class="mdl-card__title-text"><%= current_user.id == user.id ? 'Your' : user.name.capitalize + "'s" %> Wishlist</h3>
     </div>
     <div class="mdl-card__supporting-text">
       <% if user.gifts.any? %>
-      <table id="wishlist" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-        <thead>
-          <tr>
-            <th class="mdl-data-table__cell--non-numeric">Item</th>
-            <th class="mdl-data-table__cell--non-numeric"></th>
-          </tr>
-        </thead>
-        <tbody>
           <% user.gifts.each do |gift| %>
-          <tr>
-            <td class="mdl-data-table__cell--non-numeric"><%= gift.name %></td>
-            <td class="mdl-data-table__cell--non-numeric">
-              <%= link_to "go", gift, class: "mdl-button mdl-js-button mdl-button--accent" %>
-            </td>
-          </tr>
+            <div class="mdl-card--border mdl-card__actions">
+              <div class="mdl-card__supporting-text">
+                <%= link_to gift.name, gift, class: "mdl-typography--subhead" %>
+              </div>
+            </div>
           <% end %>
-        </tbody>
-      </table>
       <% else %>
         <h6>There are no items in your wishlist</h6>
       <% end %>
     </div>
-    <% if current_user == user && !current_page?(controller: 'gifts', action: 'new') %>
-      <div class="mdl-card__actions mdl-card--border">
+    <div class="mdl-card__actions mdl-card--border">
+      <% if current_user == user && !current_page?(controller: 'gifts', action: 'new') %>
         <%= link_to "Add Gift", :new_gift, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
-      </div>
-    <% end %>
+      <% end %>
+      <% if current_page?(controller: 'gifts', action: 'new') %>
+        <%= link_to "Go Home", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
+      <% end %>
+      <% if user != current_user %>
+        <%= link_to user.name+"'s profile", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
+      <% end %>
+    </div>
   </div>
 </div>

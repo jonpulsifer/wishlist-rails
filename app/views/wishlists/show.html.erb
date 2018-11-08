@@ -5,8 +5,11 @@
 
   <div class="row">
     <div class="col shadow-sm">
-      <%= flash_messages %>
-      <%= render partial: "wl_table", locals: { wishlists: Array(@wishlist) } %>
+      <%= flash_messages %>rwarwrarwaarw
+      <% @wishlist.each do |wl| %>
+          <%= render 'card-wishlist', user: wl.user %>
+      <% end %>
+      lolrender partial: "wl_table", locals: { wishlists: Array(@wishlist) } 
     </div>
   </div>
 </div>
