@@ -1,9 +1,4 @@
-<% if current_user == user %>
-    <!-- <span class="mdl-button mdl-js-button mdl-button--disabled">delete</span> -->
-    <% if Date.today < Date.new(2018,11,15) %>
-      <%= link_to "delete", gift, method: :delete, class: "mdl-button mdl-js-button mdl-button--accent" %>
-    <% end %>
-<% else %>
+<% if current_user != user %>
   <% if !gift.claimed_by? %>
     <%= form_for(gift) do |f| %>
     <%= f.hidden_field :claimed_by, value: current_user.id %>
