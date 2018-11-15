@@ -33,7 +33,8 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'mini_magick', '~> 4.8'
 
 # google cloud
-gem 'stackdriver'
+# wow this costs a lot
+# gem 'stackdriver'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

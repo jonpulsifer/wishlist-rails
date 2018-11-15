@@ -5,16 +5,16 @@ Rails.application.configure do
   config.cache_classes = true
 
   # google cloud
-  config.google_cloud.project_id = ENV['GOOGLE_PROJECT']
-  config.google_cloud.keyfile = ENV['GOOGLE_APPLICATION_CREDENTIALS']
+  # config.google_cloud.project_id = ENV['GOOGLE_PROJECT']
+  # config.google_cloud.keyfile = ENV['GOOGLE_APPLICATION_CREDENTIALS']
 
-  config.google_cloud.debugger.service_name = Rails.application.class.parent.to_s
-  config.google_cloud.debugger.service_version = "production"
-  config.google_cloud.logging.log_name = Rails.application.class.parent.to_s.underscore
-  config.google_cloud.use_debugger = true
-  config.google_cloud.use_error_reporting = true
-  config.google_cloud.use_logging = true
-  config.google_cloud.use_trace = true
+  # config.google_cloud.debugger.service_name = Rails.application.class.parent.to_s
+  # config.google_cloud.debugger.service_version = "production"
+  # config.google_cloud.logging.log_name = Rails.application.class.parent.to_s.underscore
+  # config.google_cloud.use_debugger = true
+  # config.google_cloud.use_error_reporting = true
+  # config.google_cloud.use_logging = true
+  # config.google_cloud.use_trace = true
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
   # and those relying on copy on write to perform better.
