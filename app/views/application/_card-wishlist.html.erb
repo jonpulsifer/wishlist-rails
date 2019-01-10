@@ -18,16 +18,14 @@
       <% end %>
     </div>
       <div class="mdl-card__actions mdl-card--border">
-        <% if current_page?(controller: 'gifts', action: 'new') %>
+        <% if current_page?(new_gift_path) %>
             <%= link_to "Go Home", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
-        <% end %>
-        <% if current_page?(user_path(current_user)) || current_page?(new_gift_path) %>
-          <% if !current_page?(new_gift_path) %>
-            <%= link_to "Add Gift", :new_gift, class: "mdl-button mdl-js-button mdl-button--accent" %>
+          <% else %>
+            <%= link_to user.name+"'s profile", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
           <% end %>
-        <% else %>
-          <%= link_to user.name+"'s profile", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
-        <% end %>
+          <% if current_page?(edit_gift_path) %>
+            <%= link_to "Add Gift", new_gift_path, class: "mdl-button mdl-js-button mdl-button--colored" %>
+          <% end %>
       </div>
   </div>
 </div>
