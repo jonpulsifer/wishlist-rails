@@ -22,6 +22,8 @@ spec:
       labels:
         app.kubernetes.io/name: wishlist
         app.kubernetes.io/part-of: wishlist
+      annotations:
+        runtime-handler.cri.kubernetes.io: gvisor
     spec:
       automountServiceAccountToken: false
       initContainers:

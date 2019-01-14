@@ -1,20 +1,33 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['pull', 'gcr.io/$PROJECT_ID/wishlist']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--cache-from', 'gcr.io/$PROJECT_ID/wishlist', '-t', 'gcr.io/$PROJECT_ID/wishlist:$COMMIT_SHA', '-t', 'gcr.io/$PROJECT_ID/wishlist', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/wishlist:$COMMIT_SHA']
+# pull kubeconfig
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['cp', 'gs://cloud-lab/kubeconfig.yml', '.']
+  waitFor: ['-']
+
+# build wishlist
+- name: 'gcr.io/cloud-builders/docker'
+  id: image-pull-latest
+  args: ['pull', 'gcr.io/$PROJECT_ID/wishlist']
+  waitFor: ['-']
+- name: 'gcr.io/cloud-builders/docker'
+  id: image-build
+  args: ['build', '--cache-from', 'gcr.io/$PROJECT_ID/wishlist', '-t', 'gcr.io/$PROJECT_ID/wishlist:$COMMIT_SHA', '-t', 'gcr.io/$PROJECT_ID/wishlist', '.']
+  waitFor: ['image-pull-latest']
+- name: 'gcr.io/cloud-builders/docker'
+  id: image-push
+  args: ['push', 'gcr.io/$PROJECT_ID/wishlist:$COMMIT_SHA']
+
+# deploy wishlist
 - name: 'gcr.io/trusted-builds/kubernetes-deploy'
-  args: ['${_NAMESPACE}', '${_CONTEXT}']
+  args: ['kubernetes-deploy', '${_NAMESPACE}', '${_CONTEXT}']
+  waitFor: ['image-push']
   env:
   - 'KUBECONFIG=kubeconfig.yml'
   - 'ENVIRONMENT=production'
   - 'REVISION=$COMMIT_SHA'
+
 substitutions:
-  _CONTEXT: cloudlab
+  _CONTEXT: gke_kubesec_us-east4-b_cloudlab
   _NAMESPACE: wishlist
 images:
 - gcr.io/$PROJECT_ID/wishlist
