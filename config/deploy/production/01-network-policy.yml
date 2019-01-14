@@ -8,7 +8,27 @@ metadata:
     app.kubernetes.io/part-of: wishlist
 spec:
   egress:
-  - {}
+    - to:
+      - namespaceSelector:
+          matchLabels:
+            app.kubernetes.io/name: mysql
+      - podSelector:
+          matchLabels:
+            app.kubernetes.io/name: mysql
+      ports:
+      - protocol: TCP
+        port: 3306
+    - to:
+      - podSelector:
+          matchLabels:
+            k8s-app: kube-dns
+      - ipBlock:
+          cidr: 10.100.0.0/19
+      ports:
+      - protocol: TCP
+        port: 53
+      - protocol: UDP
+        port: 53
   ingress:
   - from:
     - ipBlock:
@@ -18,7 +38,7 @@ spec:
       protocol: TCP
   podSelector:
     matchLabels:
-      app: wishlist
+      app.kubernetes.io/name: wishlist
   policyTypes:
   - Ingress
   - Egress

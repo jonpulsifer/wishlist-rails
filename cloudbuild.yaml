@@ -6,15 +6,11 @@ steps:
 
 # build wishlist
 - name: 'gcr.io/cloud-builders/docker'
-  id: image-pull-latest
-  args: ['pull', 'gcr.io/$PROJECT_ID/wishlist']
-  waitFor: ['-']
-- name: 'gcr.io/cloud-builders/docker'
   id: image-build
   args: ['build', '--cache-from', 'gcr.io/$PROJECT_ID/wishlist', '-t', 'gcr.io/$PROJECT_ID/wishlist:$COMMIT_SHA', '-t', 'gcr.io/$PROJECT_ID/wishlist', '.']
-  waitFor: ['image-pull-latest']
 - name: 'gcr.io/cloud-builders/docker'
   id: image-push
+  waitFor: ['image-build']
   args: ['push', 'gcr.io/$PROJECT_ID/wishlist:$COMMIT_SHA']
 
 # deploy wishlist
