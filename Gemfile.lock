@@ -96,11 +96,11 @@ GEM
     minitest (5.11.3)
     msgpack (1.2.10)
     mysql2 (0.5.2)
-    nio4r (2.3.1)
+    nio4r (2.5.2)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
     public_suffix (3.1.1)
-    puma (4.0.1)
+    puma (4.2.1)
       nio4r (~> 2.0)
     rack (2.0.7)
     rack-test (1.1.0)
@@ -179,7 +179,7 @@ DEPENDENCIES
   jbuilder (~> 2.9)
   listen (>= 3.0.5, < 3.2)
   mysql2
-  puma (~> 4.0)
+  puma (~> 4.2)
   rails (~> 5.2.3)
   selenium-webdriver
   spring
