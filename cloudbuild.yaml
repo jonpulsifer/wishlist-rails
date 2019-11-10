@@ -5,14 +5,11 @@ steps:
   waitFor: ['-']
 
 # build wishlist
-- name: 'gcr.io/cloud-builders/docker'
-  id: image-build
-  args: ['build', '--cache-from', 'gcr.io/$PROJECT_ID/wishlist', '-t', 'gcr.io/$PROJECT_ID/wishlist:$COMMIT_SHA', '-t', 'gcr.io/$PROJECT_ID/wishlist', '.']
-- name: 'gcr.io/cloud-builders/docker'
+- name: 'gcr.io/kaniko-project/executor:latest'
   id: image-push
-  waitFor: ['image-build']
-  args: ['push', 'gcr.io/$PROJECT_ID/wishlist:$COMMIT_SHA']
-
+  args:
+  - --destination=gcr.io/$PROJECT_ID/wishlist:$COMMIT_SHA
+  - --cache=true
 # deploy wishlist
 - name: 'gcr.io/trusted-builds/kubernetes-deploy'
   args: ['kubernetes-deploy', '${_NAMESPACE}', '${_CONTEXT}']
@@ -25,5 +22,3 @@ steps:
 substitutions:
   _CONTEXT: gke_kubesec_us-east4-b_lab
   _NAMESPACE: wishlist
-images:
-- gcr.io/$PROJECT_ID/wishlist
