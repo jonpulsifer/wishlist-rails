@@ -5,16 +5,17 @@ metadata:
   namespace: wishlist
   annotations:
     kubernetes.io/ingress.class: "nginx"
+    external-dns.alpha.kubernetes.io/hostname: "wishin.app"
   labels:
     app.kubernetes.io/name: wishlist
     app.kubernetes.io/part-of: wishlist
 spec:
   tls:
   - hosts:
-    - wishlist.srsly.ca
+    - wishin.app
     secretName: wishlist-tls
   rules:
-  - host: wishlist.srsly.ca
+  - host: wishin.app
     http:
       paths:
       - path: /

@@ -22,10 +22,9 @@ spec:
       labels:
         app.kubernetes.io/name: wishlist
         app.kubernetes.io/part-of: wishlist
-      annotations:
-        runtime-handler.cri.kubernetes.io: gvisor
     spec:
       automountServiceAccountToken: false
+      serviceAccountName: wishlist
       initContainers:
       - name: migration
         image: gcr.io/trusted-builds/wishlist:<%= current_sha %>
@@ -57,9 +56,7 @@ spec:
               name: database
               key: password
         - name: GOOGLE_PROJECT
-          value: kubesec
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: /var/run/secrets/gcp/credentials.json
+          value: wishlist-4362e
         - name: MYSQL_DATABASE
           value: wishlist
         - name: RAILS_ENV
@@ -70,10 +67,6 @@ spec:
           value: production
         ports:
         - containerPort: 8080
-        volumeMounts:
-        - name: gcp-credentials
-          mountPath: /var/run/secrets/gcp
-          readOnly: true
       containers:
       - name: wishlist
         image: gcr.io/trusted-builds/wishlist:<%= current_sha %>
@@ -105,9 +98,7 @@ spec:
               name: database
               key: password
         - name: GOOGLE_PROJECT
-          value: kubesec
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: /var/run/secrets/gcp/credentials.json
+          value: wishlist-4362e
         - name: MYSQL_DATABASE
           value: wishlist
         - name: RAILS_ENV
@@ -118,11 +109,3 @@ spec:
           value: production
         ports:
         - containerPort: 8080
-        volumeMounts:
-        - name: gcp-credentials
-          mountPath: /var/run/secrets/gcp
-          readOnly: true
-      volumes:
-      - name: gcp-credentials
-        secret:
-          secretName: gcp-sa
