@@ -1,9 +1,9 @@
-FROM ruby:2.5
+FROM ruby:2.6
 RUN apt-get -qqy update && \
     apt-get -qqy upgrade
 
-# node 10
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+# node 12
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN apt-get -qqy install nodejs
 
 
