@@ -1,3 +1,5 @@
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=jonpulsifer/wishlist-rails)](https://dependabot.com)
+
 # README
 
 This README would normally document whatever steps are necessary to get the
