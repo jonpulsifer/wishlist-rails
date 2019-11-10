@@ -23,7 +23,7 @@ steps:
   - 'REVISION=$COMMIT_SHA'
 
 substitutions:
-  _CONTEXT: gke_kubesec_us-east4-b_cloudlab
+  _CONTEXT: gke_kubesec_us-east4-b_lab
   _NAMESPACE: wishlist
 images:
 - gcr.io/$PROJECT_ID/wishlist
