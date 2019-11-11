@@ -11,8 +11,8 @@ steps:
   - --destination=gcr.io/$PROJECT_ID/wishlist:$COMMIT_SHA
   - --cache=true
 # deploy wishlist
-- name: 'gcr.io/trusted-builds/kubernetes-deploy'
-  args: ['kubernetes-deploy', '${_NAMESPACE}', '${_CONTEXT}']
+- name: 'gcr.io/trusted-builds/krane'
+  args: ['krane', 'deploy', '-f', 'config/deploy/production', '${_NAMESPACE}', '${_CONTEXT}']
   waitFor: ['image-push']
   env:
   - 'KUBECONFIG=kubeconfig.yml'
