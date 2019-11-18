@@ -1,5 +1,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  Rails.application.configure do
+    # Whitelist one hostname
+    config.hosts << "wishlist.myshopify.io"
+  end
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development

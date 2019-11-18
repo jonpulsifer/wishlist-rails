@@ -1,7 +1,7 @@
 <div class="mdl-cell mdl-cell--5-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
   <div class="santa mdl-card mdl-shadow--8dp">
     <div class="mdl-card__title mdl-color--red-800 mdl-color-text--white">
-      <h3 class="mdl-card__title-text"><%= current_user.id == user.id ? 'My' : user.name.capitalize + "'s" %> Wishlist</h3>
+      <h3 class="mdl-card__title-text"><%= (current_user.id == user.id ? 'My' : user.name.capitalize + "'s") + " Wishlist" %></h3>
     </div>
     <div class="mdl-card__supporting-text">
     <p>Click on one of the gifts below to claim it, get the link, and more.</p>
@@ -17,15 +17,16 @@
         <h6>There are no items in this wishlist</h6>
       <% end %>
     </div>
-      <div class="mdl-card__actions mdl-card--border">
         <% if current_page?(new_gift_path) %>
+            <div class="mdl-card__actions mdl-card--border">
             <%= link_to "Go Home", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
-          <% else %>
-            <%= link_to user.name+"'s profile", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
-          <% end %>
-          <% if current_page?(edit_gift_path) %>
-            <%= link_to "Add Gift", new_gift_path, class: "mdl-button mdl-js-button mdl-button--colored" %>
-          <% end %>
-      </div>
+            </div>
+        <% else %>
+            <% unless current_page?(@user) %>
+            <div class="mdl-card__actions mdl-card--border">
+              <%= link_to (current_user.id == user.id ? 'My' : user.name.capitalize + "'s") + " Wishlist", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
+            </div>
+            <% end %>
+        <% end %>
   </div>
 </div>

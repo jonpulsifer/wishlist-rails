@@ -18,7 +18,7 @@
         <%= render "button-claim", gift: gift, user: @user %>
         <% if current_user == @user %>
           <%= link_to "edit", edit_gift_path(gift.id), class: "mdl-button mdl-js-button mdl-button--accent" %>
-          <% if Date.today < Date.new(2018,11,15) %>
+          <% if gift.frozen? %>
             <%= link_to "delete", gift, method: :delete, class: "mdl-button mdl-js-button mdl-button--accent" %>
           <% end %>
         <% end %>

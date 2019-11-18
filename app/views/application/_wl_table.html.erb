@@ -2,7 +2,7 @@
 <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
   <div class="mdl-card mdl-shadow--8dp">
     <div class="mdl-card__title">
-      <h3 class="mdl-card__title-text"><%= wishlist.user.name.capitalize! %>'s <%= wishlist.name.titleize %> Wishlist</h3>
+      <h3 class="mdl-card__title-text"><% wishlist.user.name.capitalize! + "'s Wishlist" %></h3>
     </div>
     <div class="mdl-card__supporting-text">
       <table id="wishlist" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width:100%;">
