@@ -17,16 +17,19 @@
         <h6>There are no items in this wishlist</h6>
       <% end %>
     </div>
-        <% if current_page?(new_gift_path) %>
-            <div class="mdl-card__actions mdl-card--border">
-            <%= link_to "Go Home", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
-            </div>
-        <% else %>
-            <% unless current_page?(@user) %>
-            <div class="mdl-card__actions mdl-card--border">
-              <%= link_to (current_user.id == user.id ? 'My' : user.name.capitalize + "'s") + " Wishlist", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
-            </div>
-            <% end %>
-        <% end %>
+    <% unless current_page?(new_gift_path) || current_page?(current_user) %>
+    <div class="mdl-card__actions mdl-card--border">
+      <%= link_to "Go Home", current_user, class: "mdl-button mdl-js-button mdl-button--colored" %>
+    </div>
+    <% else %>
+    <div class="mdl-card__actions mdl-card--border">
+      <%= link_to "Add Gift", new_gift_path, class: "mdl-button mdl-js-button mdl-button--colored" %>
+    </div>
+    <% end %>
+    <% unless current_page?(@user) %>
+    <div class="mdl-card__actions mdl-card--border">
+      <%= link_to (current_user.id == user.id ? 'My' : user.name.capitalize + "'s") + " Wishlist", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
+    </div>
+    <% end %>
   </div>
 </div>
