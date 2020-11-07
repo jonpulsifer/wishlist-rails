@@ -171,6 +171,8 @@ GEM
       unicode-display_width (>= 1.4.0, < 2.0)
     rubocop-ast (1.1.0)
       parser (>= 2.7.1.5)
+    rubocop-shopify (1.0.6)
+      rubocop (>= 0.92, < 0.94)
     ruby-progressbar (1.10.1)
     rubyzip (2.3.0)
     selenium-webdriver (3.142.7)
@@ -237,6 +239,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 6.0.2)
   rubocop
+  rubocop-shopify
   selenium-webdriver
   solargraph
   spring

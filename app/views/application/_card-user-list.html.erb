@@ -1,4 +1,4 @@
-<div class="mdl-cell mdl-cell--5-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+<div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
   <div class="mdl-card mdl-shadow--8dp">
     <div class="mdl-card__title mdl-color--green mdl-color-text--white">
       <h1 class="mdl-card__title-text">Everyone's wishlists</h1>
@@ -6,20 +6,20 @@
     <div class="mdl-card__supporting-text">
       <h6>This is a quick way to get to a person's wishlist!</h6>
       <ul class="mdl-list">
-        <% card_for.each do |u| %>
-          <% if u.id != current_user.id %>
-        <li class="mdl-list__item">
-          <span class="mdl-list__item-primary-content">
-          <i class="material-icons mdl-list__item-icon">card_giftcard</i>
-          <%= link_to u.name.capitalize!, user_path(u) %>
-          </span>
-        </li>
-        <% end %>
+        <% users.each do |user| %>
+          <% if user.id != current_user.id %>
+            <li class="mdl-list__item">
+              <span class="mdl-list__item-primary-content">
+              <i class="material-icons mdl-list__item-icon">card_giftcard</i>
+              <%= link_to user.name.capitalize!, user_path(user) %>
+              </span>
+            </li>
+          <% end %>
         <% end %>
       </ul>
     </div>
     <div class="mdl-card__actions mdl-card--border">
-      <%= link_to "My Wishlist", user_path(current_user), class: "mdl-button mdl-button--colored mdl-js-button mdl-js-button-effect" %>
+      <%= link_to "Home", user_path(current_user), class: "mdl-button mdl-button--colored mdl-js-button mdl-js-button-effect" %>
     </div>
   </div>
 </div>

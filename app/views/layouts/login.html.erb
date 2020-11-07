@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Wishlist - <%= content_for?(:title) ? yield(:title) : "Wishlist" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Wishlist" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,11 +13,6 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-      <%= render "navbar" %>
-      <main class="mdl-layout__content">
-        <%= yield %>
-      </main>
-    </div>
+    <%= yield %>
   </body>
 </html>

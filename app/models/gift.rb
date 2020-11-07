@@ -1,8 +1,13 @@
-class Gift < ApplicationRecord
-    belongs_to :wishlist
-    validates :name, presence: true
+# frozen_string_literal: true
+require 'uri'
 
-    def frozen?
-        Date.today < Date.new(2019,12,01)
-    end
+class Gift < ApplicationRecord
+  belongs_to :user
+  validates :name, presence: true
+  scope :claimed, -> { where("claimed_by IS NOT NULL") }
+  scope :unclaimed, -> { where("claimed_by IS NULL") }
+
+  def frozen?
+    Date.today < Date.new(2020, 12, 10)
+  end
 end

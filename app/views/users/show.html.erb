@@ -1,17 +1,12 @@
-<% provide(:title, "My Profile") %>
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <%= render "navbar" %>
-  <main class="mdl-layout__content">
-    <%= flash_messages %>
-    <div class="page-content">
-      <div class="mdl-grid">
-        <% if !@user.wishlist.present? %>
-          <%= render 'card-create-wishlist' %>
-        <% else %>
-          <%= render 'card-wishlist', user: @user %>
-        <% end %>
-          <%= render 'card-user-list', card_for: @users %>
-      </div>
-    </div>
-  </main>
+<% if current_user == @user %>
+  <% provide(:title, "My Profile") %>
+<% else %>
+  <% provide(:title, "#{@user.name.capitalize}'s Profile") %>
+<% end %>
+<%= flash_messages %>
+<div class="page-content">
+  <div class="mdl-grid">
+    <%= render 'card-wishlist', user: @user %>
+    <%= render 'card-user-list', users: @users %>
+  </div>
 </div>

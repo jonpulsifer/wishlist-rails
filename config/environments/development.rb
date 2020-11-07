@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
   Rails.application.configure do
     # Whitelist one hostname
-    config.hosts << "wishlist.myshopify.io"
+    config.hosts << 'wishlist.myshopify.io'
   end
 
   # In the development environment your application's code is reloaded on
@@ -61,7 +63,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # allow web console from my home net
-  config.web_console.whitelisted_ips = ["0.0.0.0/0"]
+  config.web_console.whitelisted_ips = ['0.0.0.0/0']
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.

@@ -1,14 +1,9 @@
 <% provide(:title, "Wishlist!") %>
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <%= render "navbar", user: @user %>
-  <main class="mdl-layout__content">
-  <div class="mdl-grid">
-    <%= flash_messages %>
-    <% @users.each do |u| %>
-        <% if u.id != current_user.id %>
-          <%= render "card-user", user: u %>
-        <% end %>
-    <% end %>
-  </div>
-  </main>
+<div class="mdl-grid">
+  <%= flash_messages %>
+  <% @users.each do |u| %>
+      <% if u.id != current_user.id %>
+        <%= render "card-user", user: u %>
+      <% end %>
+  <% end %>
 </div>

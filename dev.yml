@@ -17,7 +17,7 @@ up:
   - database:
       bootstrap: bin/rails db:create db:migrate db:schema:load
       migrate: bin/rails db:migrate db:test:prepare
-      host: incident-dashboard.railgun
+      host: wishlist.railgun
       user: root
       password: ''
       database: wishlist_dev
@@ -41,10 +41,6 @@ commands:
           optional: --include-branch-commits --all-cops
         desc: 'Run Rubocop checks. Add --include-branch-commits to run on all files changed on the current branch. Add --all-cops to run all the cops.'
         run: cd $USER_PWD && bundle exec rubocop
-
-
-commands:
-  console: bin/rails console
 
 open:
   "app": https://wishlist.myshopify.io

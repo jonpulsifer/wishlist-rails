@@ -1,10 +1,8 @@
-class User < ApplicationRecord
-    has_secure_password
-    has_one :wishlist, dependent: :destroy
-    has_many :gifts, through: :wishlist
-    validates :name, presence: true, uniqueness: true
+# frozen_string_literal: true
 
-    def has_wishlist?
-        self.wishlist.present?
-    end
+class User < ApplicationRecord
+  has_secure_password
+  belongs_to :family, optional: true
+  has_many :gifts, dependent: :destroy
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
 end

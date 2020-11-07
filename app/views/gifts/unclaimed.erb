@@ -1,0 +1,9 @@
+<% provide(:title, "Unclaimed Gifts") %>
+<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+  <div class="mdl-card mdl-shadow--8dp">
+    <div class="mdl-card__title">
+      <h3 class="mdl-card__title-text">List of Unclaimed Gifts</h3>
+    </div>
+    <%= render "gift-table-all", gifts: @gifts %>
+  </div>
+</div>

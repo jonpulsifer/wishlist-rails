@@ -1,9 +1,9 @@
-FROM ruby:2.6
+FROM ruby:2.7
 RUN apt-get -qqy update && \
     apt-get -qqy upgrade
 
 # node 12
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get -qqy install nodejs
 
 
