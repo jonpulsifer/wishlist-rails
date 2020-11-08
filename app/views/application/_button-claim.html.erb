@@ -2,16 +2,16 @@
   <% if !gift.claimed_by? %>
     <%= form_for(gift) do |f| %>
     <%= f.hidden_field :claimed_by, value: current_user.id %>
-    <%= f.submit "Claim", class: "mdl-chip mdl-chip__text" %>
+    <%= f.submit "Claim", class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
     <% end %>
   <% else %>
     <% if gift.claimed_by == current_user.id %>
       <%= form_for(gift) do |f| %>
         <%= f.hidden_field :claimed_by, value: nil %>
-        <%= f.submit 'Unclaim', class: "mdl-chip mdl-chip__text mdl-color--green-500 mdl-color-text--white" %>
+        <%= f.submit 'Unclaim', class: "mdl-button mdl-js-button mdl-button mdl-button--accent" %>
       <% end %>
     <% else %>
-      <span class="mdl-chip mdl-color--red-300 mdl-color-text--white">
+      <button class="mdl-button mdl-js-button mdl-button--disabled">
         <span class="mdl-chip__text">Claimed</span>
       </span>
     <% end %>

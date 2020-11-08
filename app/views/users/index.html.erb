@@ -1,9 +1,7 @@
-<% provide(:title, "Wishlist!") %>
+<% provide(:title, "All people") %>
 <div class="mdl-grid">
   <%= flash_messages %>
-  <% @users.each do |u| %>
-      <% if u.id != current_user.id %>
-        <%= render "card-user", user: u %>
-      <% end %>
+  <% @users.each do |user| %>
+    <%= render "card-user", user: user %>
   <% end %>
 </div>

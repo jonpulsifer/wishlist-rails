@@ -1,0 +1,17 @@
+<div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+  <div class="mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h3 class="mdl-card__title-text">Gifts you claimed</h3>
+    </div>
+    <% if gifts.any? %>
+    <%= render "gift-table-all", gifts: gifts %>
+    <% else %>
+    <div class="mdl-card__supporting-text">
+      <h6>You have not claimed any gifts</h6>
+    </div>
+    <% end %>
+    <div class="mdl-card__actions mdl-card--border">
+      <%= link_to "Claim a gift", unclaimed_path, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+    </div>
+  </div>
+</div>

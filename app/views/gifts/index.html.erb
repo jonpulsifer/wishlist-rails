@@ -1,9 +1,12 @@
 <% provide(:title, "Gifts") %>
 <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
-  <div class="mdl-card mdl-shadow--8dp">
+  <div class="mdl-card mdl-shadow--2dp">
     <div class="mdl-card__title">
-      <h3 class="mdl-card__title-text">List of Gifts</h3>
+      <h3 class="mdl-card__title-text">All Gifts</h3>
     </div>
     <%= render "gift-table-all", gifts: @gifts %>
+    <div class="mdl-card__actions mdl-card--border">
+      <%= link_to "Unclaimed Gifts", unclaimed_path, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+    </div>
   </div>
 </div>

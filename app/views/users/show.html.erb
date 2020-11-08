@@ -3,10 +3,14 @@
 <% else %>
   <% provide(:title, "#{@user.name.capitalize}'s Profile") %>
 <% end %>
-<%= flash_messages %>
 <div class="page-content">
+  <%= flash_messages %>
   <div class="mdl-grid">
-    <%= render 'card-wishlist', user: @user %>
-    <%= render 'card-user-list', users: @users %>
+  <%= render 'card-wishlist', user: @user %>
+  <% if current_user == @user %>
+    <%= render 'card-claimed-gifts', user: @user, gifts: @gifts %>
+  <% else %>
+      <%= render 'card-user-list', users: @users %>
+  <% end %>
   </div>
 </div>

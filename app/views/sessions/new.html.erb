@@ -1,8 +1,8 @@
 <% provide(:title, "Log In!") %>
-<div class="mdl-layout mdl-js-layout mdl-color--grey-300">
+<div class="login mdl-layout mdl-js-layout mdl-color--grey-300">
   <main class="login mdl-layout__content">
     <div class="login mdl-card mdl-shadow--8dp">
-      <div class="mdl-card__title mdl-color--primary-dark mdl-color-text--white">
+      <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
         <h1 class="mdl-card__title-text">Please sign in</h1>
       </div>
       <div class="mdl-card__supporting-text">
@@ -17,8 +17,8 @@
             <%= f.label :password, class: 'mdl-textfield__label' %>
           </div>
           <div class="mdl-card__actions">
-            <%= f.submit "Log In", class: 'mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--primary' %>
-            <%= link_to "Register Here", :new_user, class: "mdl-button mdl-js-button mdl-button--accent" %>
+            <%= f.submit "Log In", class: 'mdl-button mdl-js-button mdl-button--raised mdl-button--colored' %>
+            <%= link_to "Register Here", :new_user, class: "mdl-button mdl-js-button mdl-button--colored" %>
           </div>
         <% end %>
       </div>

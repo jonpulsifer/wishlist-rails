@@ -1,7 +1,7 @@
 <% provide(:title, "Add Gift to Wishlist") %>
 <div class="mdl-grid">
   <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-    <div class="mdl-card mdl-shadow--8dp">
+    <div class="mdl-card mdl-shadow--2dp">
       <div class="mdl-card__title mdl-color--primary-dark mdl-color-text--white">
         <h1 class="mdl-card__title-text">Add a Gift to Your Wishlist</h1>
       </div>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="mdl-card__actions mdl-card--border">
-      <%= f.submit "Add Gift", class: "mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect" %>
+      <%= f.submit "Add Gift", class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
       <%= f.hidden_field :user_id, value: current_user.id %>
       </div>
       <% end %>

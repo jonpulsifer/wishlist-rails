@@ -1,7 +1,7 @@
 <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-  <div class="mdl-card mdl-shadow--8dp">
-    <div class="mdl-card__title mdl-color--green-800 mdl-color-text--white">
-      <h3 class="mdl-card__title-text"><%= current_user.id == user.id ? 'Your' : user.name.capitalize + "'s" %> Wishlist</h3>
+  <div class="mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h3 class="mdl-card__title-text"><%= current_user.id == user.id ? 'Your' : user.name.capitalize + "'s" %> Gifts</h3>
     </div>
     <% if user.gifts.any? %>
     <%= render "gift-table", user: user %>
@@ -10,15 +10,15 @@
       <h6>There are no items in this wishlist</h6>
     </div>
     <% end %>
-    <div class="mdl-card__actions">
+    <div class="mdl-card__actions mdl-card--border">
       <% if current_user == user && !current_page?(controller: 'gifts', action: 'new') %>
         <%= link_to "Add Gift", :new_gift, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
       <% end %>
       <% if current_page?(controller: 'gifts', action: 'new') %>
-        <%= link_to "Go Home", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
+        <%= link_to "Go Home", user, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
       <% end %>
       <% if user != current_user %>
-        <%= link_to user.name+"'s profile", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
+        <%= link_to user.name+"'s profile", user, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
       <% end %>
     </div>
   </div>

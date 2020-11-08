@@ -6,6 +6,7 @@ class Gift < ApplicationRecord
   validates :name, presence: true
   scope :claimed, -> { where("claimed_by IS NOT NULL") }
   scope :unclaimed, -> { where("claimed_by IS NULL") }
+  scope :claimed_by_user, ->(user) { where("claimed_by = ? ", user)}
 
   def frozen?
     Date.today < Date.new(2020, 12, 10)

@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       redirect_to user, notice: 'Successfully logged in!'
     else
       # if email or password incorrect, re-render login page:
-      flash[:error] = 'Incorrect name or password, try again.'
+      flash.now[:error] = 'Incorrect name or password, try again.'
       render :new
     end
   end

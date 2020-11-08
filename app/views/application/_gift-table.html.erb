@@ -2,9 +2,11 @@
   <thead class="thead-light">
     <tr>
       <th class="mdl-data-table__cell--non-numeric">Gift</th>
-      <th class="mdl-data-table__cell--non-numeric">Person</th>
       <% if user != current_user %>
+        <th class="mdl-data-table__cell--non-numeric">Person</th>
         <th class="mdl-data-table__cell--non-numeric">Claim</th>
+      <% else %>
+        <th class="mdl-data-table__cell--non-numeric"></th>
       <% end %>
     </tr>
   </thead>
@@ -12,9 +14,13 @@
     <% user.gifts.each do |gift| %>
     <tr>
       <td class="mdl-data-table__cell--non-numeric"><%= link_to gift.name, gift_path(gift.id) %></td>
-      <td class="mdl-data-table__cell--non-numeric"><%= gift.user.name.capitalize %></td>
       <% if user != current_user %>
+        <td class="mdl-data-table__cell--non-numeric"><%= gift.user.name.capitalize %></td>
         <td class="mdl-data-table__cell--non-numeric"><%= render "button-claim", gift: gift %></td>
+      <% else %>
+        <td class="mdl-data-table__cell--non-numeric">
+          <%= link_to "edit", edit_gift_path(gift), class: "mdl-button mdl-js-button mdl-button--colored" %>
+        </td>
       <% end %>
     </tr>
     <% end %>

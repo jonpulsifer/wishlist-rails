@@ -18,10 +18,10 @@ class GiftsController < ApplicationController
       redirect_to :new_gift
     else
       # If gift fails model validation: probably amazon.com links lol
-      flash.now.alert = "Oops, couldn't create gift."
+      flash.now[:notice] = "Oops, couldn't create gift."
       if @gift.errors.any?
         @gift.errors.full_messages.each do |message_error|
-          flash.now.alert = message_error.to_s
+          flash.now[:error] = message_error.to_s
         end
 
       end

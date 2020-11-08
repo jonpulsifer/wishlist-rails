@@ -2,6 +2,7 @@
 
 class UsersController < ApplicationController
   before_action :logged_in_user, only: %i[index edit show update]
+  layout "login", only: [:new, :create]
 
   def new
     @user = User.new
@@ -9,7 +10,7 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-    @users = User.all
+    @users = User.where.not(id: current_user)
   end
 
   def create
@@ -25,12 +26,11 @@ class UsersController < ApplicationController
       redirect_to @user
     else
       # If user fails model validation - probably a bad password or duplicate name
-      flash.now.alert = "Oops, couldn't create account."
+      flash.now[:notice] = "Oops, couldn't create account."
       if @user.errors.any?
         @user.errors.full_messages.each do |message_error|
-          flash.now.alert = message_error.to_s
+          flash.now[:error] = message_error.to_s
         end
-
       end
       render :new
     end
@@ -42,7 +42,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @users = User.all
+    @users = User.where.not(id: current_user)
+    @gifts = Gift.claimed_by_user(@user)
   end
 
   def update

@@ -1,4 +1,5 @@
-<table id="wishlist" class="mdl-data-table mdl-js-data-table">
+<% if gifts.any? %>
+  <table id="wishlist" class="mdl-data-table mdl-js-data-table">
   <thead class="thead-light">
     <tr>
       <th class="mdl-data-table__cell--non-numeric">Gift</th>
@@ -16,3 +17,8 @@
     <% end %>
   </tbody>
 </table>
+<% else %>
+  <div class="mdl-card__supporting-text">
+    <h6>There are no unclaimed gifts avaiable!</h6>
+  </div>
+<% end %>
