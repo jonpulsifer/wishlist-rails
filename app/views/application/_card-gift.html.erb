@@ -1,15 +1,16 @@
 <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
   <div class="mdl-card mdl-shadow--2dp">
-    <div class="mdl-card__title">
-      <h3 class="mdl-card__title-text"><%= gift.name %></h3>
+    <div class="mdl-card__title mdl-color--primary-dark mdl-color-text--white">
+      <h3 class="mdl-card__title-text "><%= gift.name %></h3>
     </div>
     <div class="mdl-card__supporting-text">
       <% if gift.url? %>
-        <h6>Link:</h6>
+        <p>Link:</p>
         <%= link_to gift.url, gift.url %>
       <% end %>
       <% if gift.notes? %>
-        <h6>Notes:</h6>
+        <br /><br />
+        <p>Notes:</p>
         <p><%= gift.notes %></p>
       <% end %>
     </div>

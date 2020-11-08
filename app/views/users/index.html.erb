@@ -1,7 +1,5 @@
 <% provide(:title, "All people") %>
 <div class="mdl-grid">
   <%= flash_messages %>
-  <% @users.each do |user| %>
-    <%= render "card-user", user: user %>
-  <% end %>
+  <%= render "card-user-list", users: @users %>
 </div>

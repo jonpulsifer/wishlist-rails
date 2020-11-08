@@ -6,7 +6,7 @@
         <th class="mdl-data-table__cell--non-numeric">Person</th>
         <th class="mdl-data-table__cell--non-numeric">Claim</th>
       <% else %>
-        <th class="mdl-data-table__cell--non-numeric"></th>
+        <th class="mdl-data-table__cell--non-numeric">Actions</th>
       <% end %>
     </tr>
   </thead>
@@ -19,7 +19,7 @@
         <td class="mdl-data-table__cell--non-numeric"><%= render "button-claim", gift: gift %></td>
       <% else %>
         <td class="mdl-data-table__cell--non-numeric">
-          <%= link_to "edit", edit_gift_path(gift), class: "mdl-button mdl-js-button mdl-button--colored" %>
+          <%= link_to "edit", edit_gift_path(gift), class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
         </td>
       <% end %>
     </tr>
