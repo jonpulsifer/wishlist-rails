@@ -1,4 +1,4 @@
-FROM ruby:2.7
+FROM ruby:2.7.2
 RUN apt-get -qqy update && \
     apt-get -qqy upgrade
 
@@ -9,6 +9,7 @@ RUN apt-get -qqy install nodejs
 
 WORKDIR /app
 COPY Gemfile Gemfile.lock /app/
+RUN gem install bundler && bundle update --bundler
 RUN bundle install --jobs 4
 
 # Copy the application into the container

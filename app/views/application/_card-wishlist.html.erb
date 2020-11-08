@@ -13,12 +13,12 @@
     <div class="mdl-card__actions mdl-card--border">
       <% if current_user == user && !current_page?(controller: 'gifts', action: 'new') %>
         <%= link_to "Add Gift", :new_gift, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+      <% else %>
+        <%= link_to "All Users", users_path, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+        <%= link_to "Go Home", current_user, class: "mdl-button mdl-js-button mdl-button--colored" %>
       <% end %>
       <% if current_page?(controller: 'gifts', action: 'new') %>
         <%= link_to "Go Home", user, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
-      <% end %>
-      <% if user != current_user %>
-        <%= link_to user.name+"'s profile", user, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
       <% end %>
     </div>
   </div>
