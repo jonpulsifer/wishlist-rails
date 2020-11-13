@@ -1,21 +1,19 @@
 <% provide(:title, "People with gifts") %>
-<div class="mdl-grid">
-  <%= flash_messages %>
-  <div class="mdl-cell">
-    <h2 class="mdl-typography--subhead">The people below have gifts on their wishlist</h2>
-    <ul class="mdl-list">
-      <% @users.each do |user| %>
-        <% if user.gifts.any? %>
-          <li class="mdl-list__item mdl-list__item--two-line">
-            <span class="mdl-list__item-primary-content">
-              <i class="material-icons mdl-list__item-icon">card_giftcard</i>
-              <%= link_to user.name.capitalize!, user_path(user) %>
-              <span class="mdl-list__item-sub-title">
-                <%= "#{user.gifts.length} #{user.gifts.length>1 ? 'gifts' : 'gift'}" %></span>
-            </span>
-          </li>
-        <% end %>
+<%= flash_messages %>
+<div class="mdl-cell mdl-cell--12-col">
+  <h2 class="mdl-typography--subhead">The people below have gifts on their wishlist</h2>
+  <ul class="mdl-list">
+    <% @users.each do |user| %>
+      <% if user.gifts.any? %>
+        <li class="mdl-list__item mdl-list__item--two-line">
+          <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-icon">card_giftcard</i>
+            <%= link_to user.name.capitalize!, user_path(user) %>
+            <span class="mdl-list__item-sub-title">
+              <%= "#{user.gifts.length} #{user.gifts.length>1 ? 'gifts' : 'gift'}" %></span>
+          </span>
+        </li>
       <% end %>
-    </ul>
-  </div>
+    <% end %>
+  </ul>
 </div>

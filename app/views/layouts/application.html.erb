@@ -16,7 +16,9 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-drawer">
       <%= render "navbar" %>
       <main class="mdl-layout__content">
-        <%= yield %>
+        <div class="mdl-grid">
+          <%= yield %>
+        </div>
       </main>
     </div>
   </body>
