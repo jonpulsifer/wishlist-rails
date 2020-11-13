@@ -39,12 +39,9 @@ class GiftsController < ApplicationController
   end
 
   def index
-    @gifts = Gift.where.not(user: current_user)
     @users = User.where.not(id: current_user)
-  end
-
-  def unclaimed
-    @gifts = Gift.unclaimed.where.not(user: current_user)
+    @claimed_gifts = Gift.claimed.where.not(user: current_user)
+    @unclaimed_gifts = Gift.unclaimed.where.not(user: current_user)
   end
 
   def update

@@ -1,24 +1,15 @@
-  <header class="mdl-layout__header">
-    <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title"><%= yield(:title) %></span>
-      <div class="mdl-layout-spacer"></div>
-      <!-- Navigation. We hide it in small screens. -->
-      <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <%= link_to 'Home', user_path(current_user), class: "mdl-navigation__link" %>
-        <%= link_to 'Gifts', gifts_path, class: "mdl-navigation__link" %>
-        <%= link_to 'People', users_path, class: "mdl-navigation__link" %>
-        <%= link_to 'Edit Profile', edit_user_path(current_user), class: "mdl-navigation__link" %>
-        <%= link_to "Logout (#{current_user.name.capitalize})", logout_path, class: "mdl-navigation__link" %>
-      </nav>
-    </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">🎅 WishlistApp</span>
-    <nav class="mdl-navigation">
-        <%= link_to 'Home', user_path(current_user), class: "mdl-navigation__link" %>
-        <%= link_to 'Gifts', gifts_path, class: "mdl-navigation__link" %>
-        <%= link_to 'People', users_path, class: "mdl-navigation__link" %>
-        <%= link_to 'Edit Profile', edit_user_path(current_user), class: "mdl-navigation__link" %>
-        <%= link_to "Logout (#{current_user.name.capitalize})", logout_path, class: "mdl-navigation__link" %>
-    </nav>
+<header class="mdl-layout__header">
+  <div class="mdl-layout__header-row">
+    <span class="mdl-layout-title"><%= yield(:title) %></span>
   </div>
+</header>
+<div class="mdl-layout__drawer">
+  <span class="mdl-layout-title">🎅 WishlistApp</span>
+  <nav class="mdl-navigation">
+      <%= link_to 'Home', user_path(current_user), class: "mdl-navigation__link" %>
+      <%= link_to 'Gifts', gifts_path, class: "mdl-navigation__link" %>
+      <%= link_to 'People', users_path, class: "mdl-navigation__link" %>
+      <%= link_to 'Edit Profile', edit_user_path(current_user), class: "mdl-navigation__link" %>
+      <%= link_to "Logout (#{current_user.name.capitalize})", logout_path, class: "mdl-navigation__link" %>
+  </nav>
+</div>

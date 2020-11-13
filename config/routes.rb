@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   root to: 'users#index'
   resources :users
   resources :gifts
-  get '/unclaimed' => 'gifts#unclaimed'
 
   # login
   get '/auth/login'  => 'sessions#new', as: 'login'

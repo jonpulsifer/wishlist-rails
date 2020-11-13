@@ -14,11 +14,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
-
-    # store all names in lowercase to avoid duplicates and case-sensitive login errors
-    @user.name.downcase!
-
+    @user = User.new(
+      name: user_params[:name],
+      password: user_params[:password],
+      password_confirmation: user_params[:password_confirmation],
+      family: Family.find_by(pin: user_params[:family_id])
+    )
     if @user.save
       # If user saves in the db successfully:
       flash[:notice] = 'Account created successfully!'
@@ -60,6 +61,9 @@ class UsersController < ApplicationController
   def user_params
     # strong parameters - whitelist of allowed fields #=> permit(:name, :email, ...)
     # that can be submitted by a form to the user model #=> require(:user)
-    params.require(:user).permit(:name, :password, :password_confirmation)
+    params.require(:user).permit(
+      :name, :password, :password_confirmation, :family_id,
+      :address, :shirt_size, :pant_size, :shoe_size, :dress_size
+    )
   end
 end

@@ -9,6 +9,6 @@ class Gift < ApplicationRecord
   scope :claimed_by_user, ->(user) { where("claimed_by = ? ", user)}
 
   def frozen?
-    Date.today < Date.new(2020, 12, 10)
+    Date.today < Date.new(2020, 12, 20)
   end
 end

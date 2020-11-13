@@ -10,8 +10,8 @@
 
 puts 'Seeding Families'
 Family.create!([
-                 { name: 'Griswold' },
-                 { name: 'Parker' }
+                 { name: 'Griswold', pin: 1337 },
+                 { name: 'Parker', pin: 1338 }
                ])
 
 puts 'Seeding Users'
