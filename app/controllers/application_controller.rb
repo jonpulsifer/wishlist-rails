@@ -1,3 +1,4 @@
+# typed: false
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
@@ -10,7 +11,7 @@ class ApplicationController < ActionController::Base
   def logged_in_user
     unless logged_in?
       flash[:error] = "Please sign in to continue"
-      redirect_to login_url
+      redirect_to(login_url)
     end
   end
 end

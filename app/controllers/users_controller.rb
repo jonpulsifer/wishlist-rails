@@ -1,3 +1,4 @@
+# typed: false
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
@@ -24,7 +25,7 @@ class UsersController < ApplicationController
       # If user saves in the db successfully:
       flash[:notice] = 'Account created successfully!'
       log_in(@user)
-      redirect_to @user
+      redirect_to(@user)
     else
       # If user fails model validation - probably a bad password or duplicate name
       flash.now[:notice] = "Oops, couldn't create account."
@@ -33,7 +34,7 @@ class UsersController < ApplicationController
           flash.now[:error] = message_error.to_s
         end
       end
-      render :new
+      render(:new)
     end
   end
 
@@ -50,9 +51,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      redirect_to @user
+      redirect_to(@user)
     else
-      render 'edit'
+      render('edit')
     end
   end
 

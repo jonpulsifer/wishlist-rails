@@ -10,16 +10,16 @@
 
 puts 'Seeding Families'
 Family.create!([
-                 { name: 'Griswold', pin: 1337 },
-                 { name: 'Parker', pin: 1338 }
-               ])
+  { name: 'Griswold', pin: 1337 },
+  { name: 'Parker', pin: 1338 },
+])
 
 puts 'Seeding Users'
 User.create!([
-               { name: 'alice', family: Family.first, password: 'lol', password_confirmation: 'lol' },
-               { name: 'bob', family: Family.second, password: 'lol', password_confirmation: 'lol' },
-               { name: 'carol', family: Family.second, password: 'lol', password_confirmation: 'lol' }
-             ])
+  { name: 'alice', family: Family.first, password: 'lol', password_confirmation: 'lol' },
+  { name: 'bob', family: Family.second, password: 'lol', password_confirmation: 'lol' },
+  { name: 'carol', family: Family.second, password: 'lol', password_confirmation: 'lol' },
+])
 
 puts 'Seeding Gifts'
 User.first.gifts.new(

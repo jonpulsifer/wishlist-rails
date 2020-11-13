@@ -1,3 +1,4 @@
+# typed: false
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
@@ -18,17 +19,17 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:session][:password])
       # Save the user.id in that user's session cookie:
       session[:user_id] = user.id
-      redirect_to user, notice: 'Successfully logged in!'
+      redirect_to(user, notice: 'Successfully logged in!')
     else
       # if email or password incorrect, re-render login page:
       flash.now[:error] = 'Incorrect name or password, try again.'
-      render :new
+      render(:new)
     end
   end
 
   def destroy
     # delete the saved user_id key/value from the cookie:
     session.delete(:user_id)
-    redirect_to login_url, notice: 'Logged out!'
+    redirect_to(login_url, notice: 'Logged out!')
   end
 end

@@ -1,3 +1,4 @@
+# typed: false
 # frozen_string_literal: true
 
 class GiftsController < ApplicationController
@@ -15,7 +16,7 @@ class GiftsController < ApplicationController
     if @gift.save
       # If user saves in the db successfully:
       flash[:notice] = 'Gift created!'
-      redirect_to :new_gift
+      redirect_to(:new_gift)
     else
       # If gift fails model validation: probably amazon.com links lol
       flash.now[:notice] = "Oops, couldn't create gift."
@@ -25,7 +26,7 @@ class GiftsController < ApplicationController
         end
 
       end
-      render :new
+      render(:new)
     end
   end
 
@@ -49,7 +50,7 @@ class GiftsController < ApplicationController
     if @gift.update_attributes(gift_params)
       redirect_back(fallback_location: root_path)
     else
-      render :edit
+      render(:edit)
     end
   end
 
@@ -57,9 +58,9 @@ class GiftsController < ApplicationController
     @gift = Gift.find(params[:id])
 
     if @gift.delete
-      redirect_to :new_gift
+      redirect_to(:new_gift)
     else
-      render :edit
+      render(:edit)
     end
   end
 
