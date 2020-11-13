@@ -22,12 +22,9 @@ class UsersController < ApplicationController
       family: Family.find_by(pin: user_params[:family_id])
     )
     if @user.save
-      # If user saves in the db successfully:
-      flash[:notice] = 'Account created successfully!'
       log_in(@user)
       redirect_to(@user)
     else
-      # If user fails model validation - probably a bad password or duplicate name
       flash.now[:notice] = "Oops, couldn't create account."
       if @user.errors.any?
         @user.errors.full_messages.each do |message_error|
