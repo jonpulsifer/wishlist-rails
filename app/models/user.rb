@@ -6,7 +6,7 @@ class User < ApplicationRecord
   belongs_to :family
   has_many :gifts, dependent: :destroy
 
-  before_validation :normalize_name, on: :create
+  before_validation :normalize_name, on: [:create, :update]
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 

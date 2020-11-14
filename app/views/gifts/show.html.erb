@@ -1,6 +1,4 @@
 <% provide(:title, @gift.name) %>
 <%= flash_messages %>
-<div class="mdl-grid">
-  <%= render 'card-gift', gift: @gift %>
-  <%= render 'card-wishlist', user: @gift.user %>
-</div>
+<%= render 'card-gift', gift: @gift %>
+<%= render 'card-wishlist', user: @gift.user %>
