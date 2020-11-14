@@ -13,10 +13,10 @@
     <% if current_user == user && !current_page?(controller: 'gifts', action: 'new') %>
       <%= link_to "Add New Gift", :new_gift, class: "mdl-button mdl-js-button mdl-button--colored" %>
     <% else %>
-      <%= link_to "All Users", users_path, class: "mdl-button mdl-js-button mdl-button--colored" %>
+      <%= link_to "All gifts", gifts_path, class: "mdl-button mdl-js-button mdl-button--colored" %>
     <% end %>
     <% if current_page?(controller: 'gifts', action: 'new') %>
-      <%= link_to "Go Home", user, class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+      <%= link_to "Go Home", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
     <% end %>
   </div>
 </div>

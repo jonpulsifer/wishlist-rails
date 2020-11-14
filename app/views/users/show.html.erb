@@ -15,10 +15,10 @@
     <%= render 'card-user-details', user: @user %>
   </div>
 <% else %>
-    <div class="mdl-cell">
-      <%= render 'card-user-details', user: @user %>
-    </div>
-    <div class="mdl-cell">
-      <%= render 'card-wishlist', user: @user %>
-    </div>
+  <div class="mdl-cell">
+    <%= render 'card-wishlist', user: @user %>
+  </div>
+  <div class="mdl-cell">
+    <%= render 'card-user-details', user: @user %>
+  </div>
 <% end %>

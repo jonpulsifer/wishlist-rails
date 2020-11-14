@@ -3,29 +3,32 @@
     <h3 class="mdl-card__title-text "><%= current_user == user ? 'Your' : "#{user.name.capitalize}'s" %> Details</h3>
   </div>
   <ul class="mdl-list">
-    <li class="mdl-list__item mdl-list__item--two-line">
+    <li class="mdl-list__item mdl-list__item mdl-list__item--three-line">
       <span class="mdl-list__item-primary-content">
         <i class="material-icons mdl-list__item-icon">house</i>
         Address:
-        <%= "#{user[:address].nil? ? content_tag(:p, user[:address]) : '😞'}" %>
+        <span class="mdl-list__item-text-body">
+        <%= "#{user[:address].nil? ? '😞' : user[:address]}" %>
+        </span>
       </span>
-
     </li>
     <% [:shirt_size, :pant_size, :shoe_size, :dress_size].each do |item| %>
     <li class="mdl-list__item">
       <span class="mdl-list__item-primary-content">
         <i class="material-icons mdl-list__item-icon">accessibility_new</i>
+        <span class="mdl-list__item-text-body">
         <%= "#{item.to_s.gsub("_", " ").titleize}:" %>
-        <span class="mdl-list__item-secondary-content">
-          <%= "#{user[item] ? user[item] : '😞'}" %>
+        <%= "#{user[item] ? user[item] : '😞'}" %>
         </span>
       </span>
     </li>
     <% end %>
   </ul>
   <div class="mdl-card__actions mdl-card--border">
-      <% if current_user == @user %>
-        <%= link_to "edit profile", edit_user_path(user), class: "mdl-button mdl-js-button mdl-button--colored" %>
-      <% end %>
+    <% if current_user == @user %>
+      <%= link_to "edit profile", edit_user_path(user), class: "mdl-button mdl-js-button mdl-button--colored" %>
+    <% else %>
+      <%= link_to "people", users_path, class: "mdl-button mdl-js-button mdl-button--colored" %>
+    <% end %>
   </div>
 </div>

@@ -9,4 +9,10 @@
     <h6>You have not claimed any gifts</h6>
   </div>
   <% end %>
+  <div class="mdl-card__actions mdl-card--border">
+      <%= link_to "claim more gifts", gifts_path, class: "mdl-button mdl-js-button mdl-button--colored" %>
+    <% if current_page?(controller: 'gifts', action: 'new') %>
+      <%= link_to "Go Home", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
+    <% end %>
+  </div>
 </div>

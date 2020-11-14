@@ -3,15 +3,27 @@
     <h3 class="mdl-card__title-text "><%= gift.name %></h3>
   </div>
   <div class="mdl-card__supporting-text">
-    <% if gift.url? %>
-      <p>Link:</p>
-      <%= link_to gift.url, gift.url %>
+  <ul class="mdl-list">
+    <% unless gift.notes.nil? %>
+    <li class="mdl-list__item mdl-list__item--three-line">
+      <span class="mdl-list__item-primary-content">
+        <i class="material-icons mdl-list__item-icon">notes</i>
+        <span class="mdl-list__item-text-body">
+          <%= gift.notes %>
+        </span>
+      </span>
+    </li>
     <% end %>
-    <% if gift.notes? %>
-      <br /><br />
-      <p>Notes:</p>
-      <p><%= gift.notes %></p>
+  
+    <% unless gift.url.nil? %>
+    <li class="mdl-list__item mdl-list__item--one-line">
+      <span class="mdl-list__item-primary-content">
+        <i class="material-icons mdl-list__item-icon">link</i>
+          <%= link_to gift.url, gift.url, target: :blank %>
+      </span>
+    </li>
     <% end %>
+  </ul>
   </div>
   <div class="mdl-card__actions mdl-card--border">
       <%= render "button-claim", gift: gift, user: @user %>

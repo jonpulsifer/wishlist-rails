@@ -2,7 +2,6 @@
   <% gifts.each do |gift| %>
   <li class="mdl-list__item mdl-list__item--two-line">
     <span class="mdl-list__item-primary-content">
-      <i class="material-icons mdl-list__item-icon">card_giftcard</i>
       <%= link_to gift.name, gift_path(gift) %>
       <span class="mdl-list__item-sub-title">
         <%= link_to gift.user.name.capitalize!, user_path(gift.user), class: "mdl-list__item--two-line mdl-list__item-primary-content mdl-list__item-sub-title" %>

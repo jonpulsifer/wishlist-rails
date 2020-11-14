@@ -46,7 +46,7 @@ class GiftsController < ApplicationController
   end
 
   def update
-    @gift = Gift.find(params[:id])
+    @gift = Gift.find_or_initialize_by(params[:id])
     if @gift.update_attributes(gift_params)
       redirect_back(fallback_location: root_path)
     else

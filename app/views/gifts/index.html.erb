@@ -1,7 +1,7 @@
-<% provide(:title, "Gifts") %>
+<% provide(:title, "All gifts") %>
 <div class="mdl-cell mdl-cell--6-col">
-  <h2 class="mdl-typography--title">Unclaimed gifts</h2>
+  <h2 class="mdl-typography--subhead">Unclaimed gifts</h2>
     <%= render "gift-list", gifts: @unclaimed_gifts %>
-  <h2 class="mdl-typography--title">Claimed gifts</h2>
+  <h2 class="mdl-typography--subhead">Claimed gifts</h2>
     <%= render "gift-list", gifts: @claimed_gifts %>
 </div>

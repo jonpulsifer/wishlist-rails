@@ -1,4 +1,8 @@
-<% provide(:title, @gift.name) %>
+<% provide(:title, "#{@gift.name} for #{@gift.user.name.capitalize}") %>
 <%= flash_messages %>
-<%= render 'card-gift', gift: @gift %>
-<%= render 'card-wishlist', user: @gift.user %>
+<div class="mdl-cell">
+  <%= render 'card-gift', gift: @gift %>
+</div>
+<div class="mdl-cell">
+  <%= render 'card-wishlist', user: @gift.user %>
+</div>
