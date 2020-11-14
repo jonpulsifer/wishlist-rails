@@ -3,15 +3,13 @@
   <li class="mdl-list__item mdl-list__item--two-line">
     <span class="mdl-list__item-primary-content">
       <%= link_to gift.name, gift_path(gift) %>
+      <% unless current_user == gift.user %>
       <span class="mdl-list__item-sub-title">
-        <%= link_to gift.user.name.capitalize!, user_path(gift.user), class: "mdl-list__item--two-line mdl-list__item-primary-content mdl-list__item-sub-title" %>
+        <%= link_to gift.user.name.capitalize, user_path(gift.user.id), class: "mdl-list__item--two-line mdl-list__item-primary-content mdl-list__item-sub-title" %>
+      <% end %>
       </span>
     </span>
-    <% if current_user == gift.user && !current_page?(controller: 'gifts', action: 'new') %>
-      <%= render "button-gift-actions", gift: gift %>
-    <% else %>
-      <%= render "button-claim", gift: gift %>
-    <% end %>
+    <%= render "button-gift-actions", gift: gift %>
   </li>
   <% end %>
 <% else %>

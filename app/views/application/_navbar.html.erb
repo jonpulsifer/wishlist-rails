@@ -3,13 +3,15 @@
     <span class="mdl-layout-title"><%= yield(:title) %></span>
   </div>
 </header>
-<div class="mdl-layout__drawer">
-  <span class="mdl-layout-title">🎅 WishlistApp</span>
+<div class="mdl-layout__drawer santa">
+  <span class="mdl-layout-title">
+    <%= link_to("wishin.app", user_path(current_user), class: "custom-title") %>
+  </span>
   <nav class="mdl-navigation">
-      <%= link_to 'Home', user_path(current_user), class: "mdl-navigation__link" %>
-      <%= link_to 'Gifts', gifts_path, class: "mdl-navigation__link" %>
-      <%= link_to 'People', users_path, class: "mdl-navigation__link" %>
-      <%= link_to 'Edit Profile', edit_user_path(current_user), class: "mdl-navigation__link" %>
-      <%= link_to "Logout (#{current_user.name.capitalize})", logout_path, class: "mdl-navigation__link" %>
+      <%= link_to 'Home', user_path(current_user), class: "mdl-navigation__link nav-link" %>
+      <%= link_to 'Gifts', gifts_path, class: "mdl-navigation__link nav-link" %>
+      <%= link_to 'People', users_path, class: "mdl-navigation__link nav-link" %>
+      <%= link_to 'Edit Profile', edit_user_path(current_user), class: "mdl-navigation__link nav-link" %>
+      <%= link_to "Logout (#{current_user.name.capitalize})", logout_path, class: "mdl-navigation__link nav-link" %>
   </nav>
 </div>

@@ -24,6 +24,10 @@
     color: rgba(0,0,0,.54);
 }
 
+.claim-button-center-icon {
+  text-align: center;
+}
+
 .delete-button {
   float: right;
 }
@@ -32,8 +36,9 @@
   color: rgba(165,0,0,.85)
 }
 
-.mdl-list__item .mdl-list__item-primary-content .mdl-list__item-icon {
-    margin-right: 16px;
+.mdl-list__item {
+    font-size: 16px;
+    padding: 0;
 }
 
 a {
@@ -55,4 +60,23 @@ a {
 }
 
 .flash.notice {
+}
+
+.santa {
+  background-image: url(<%= asset_data_uri 'santadab2.png' %>);
+  background-origin: content-box;
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: 35%;
+  padding: 10px 10px;
+}
+
+.custom-title {
+  font-style: italic;
+  font-weight: 500;
+  color: rgba(63,81,181,1);
+}
+
+.nav-link {
+  font-size: 16px;
 }

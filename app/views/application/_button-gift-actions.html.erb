@@ -1,22 +1,29 @@
 <span class="mdl-list__item-secondary-content">
-<%= form_for(gift) do |f| %>
-  <% if !gift.claimed_by? %>
-    <%= f.hidden_field :claimed_by, value: current_user.id %>
-    <span class="mdl-list__item-secondary-info claim-button mdl-button--icon">Edit</span>      
-    <%= link_to edit_gift_path(gift), class: "mdl-list__item-secondary-action mdl-button mdl-js-button mdl-button--icon" do %>
-      <i class="material-icons">edit</i>
+<%= form_for(gift, html: {class: "claim-button-center-icon"}) do |f| %>
+  <% if current_user == gift.user %>
+    <div class="claim-button-text">Edit</div>
+    <%= button_tag(type: 'submit', class: "mdl-button mdl-js-button mdl-button--icon") do %>
+        <i class="material-icons">edit</i>
     <% end %>
   <% else %>
-    <% if gift.claimed_by == current_user.id %>
-      <%= f.hidden_field :claimed_by, value: nil %>
-      <span class="mdl-list__item-secondary-info claim-button mdl-button--icon">Unclaim</span>      
-      <%= button_tag(type: 'submit', class: "mdl-button mdl-js-button mdl-button--icon mdl-button--accent") do %>
-          <i class="material-icons">star</i>
+    <% if !gift.claimed_by? %>
+      <%= f.hidden_field :claimed_by, value: current_user.id %>
+      <div class="claim-button-text">Claim</div>
+      <%= button_tag(type: 'submit', class: "mdl-button mdl-js-button mdl-button--icon mdl-button--colored") do %>
+          <i class="material-icons">card_giftcard</i>
       <% end %>
     <% else %>
-      <span class="mdl-list__item-secondary-info claim-button mdl-button--icon">Claimed</span>      
-      <%= button_tag(type: 'button', disabled: true, class: "mdl-button mdl-js-button mdl-button--icon mdl-button--disabled") do %>
-          <i class="material-icons">star</i>
+      <% if gift.claimed_by == current_user.id %>
+        <%= f.hidden_field :claimed_by, value: nil %>
+        <div class="claim-button-text">Unclaim</div>
+        <%= button_tag(type: 'submit', class: "mdl-button mdl-js-button mdl-button--icon mdl-button--accent") do %>
+            <i class="material-icons claim-button-unclaimed">sentiment_very_dissatisfied</i>
+        <% end %>
+      <% else %>
+        <div class="claim-button-text">Claimed</div>
+        <%= button_tag(type: 'button', disabled: true, class: "mdl-button mdl-js-button mdl-button--icon mdl-button--disabled ") do %>
+            <i class="material-icons">sentiment_very_satisfied</i>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
