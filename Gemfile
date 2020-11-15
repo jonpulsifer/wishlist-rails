@@ -41,6 +41,7 @@ group :development, :test do
   gem 'rubocop'
   gem 'rubocop-shopify'
   gem 'rubocop-sorbet'
+  gem 'faker'
 end
 
 group :development do

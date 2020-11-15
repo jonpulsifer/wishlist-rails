@@ -8,40 +8,43 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require 'faker'
+
 puts 'Seeding Families'
 Family.create!([
-  { name: 'Griswold', pin: 1337 },
-  { name: 'Parker', pin: 1338 },
+  { name: Faker::Name.unique.last_name, pin: 1337 },
+  { name: Faker::Name.unique.last_name, pin: Faker::Number.unique.number(digits: 4) },
+  { name: Faker::Name.unique.last_name, pin: Faker::Number.unique.number(digits: 4) },
 ])
 
 puts 'Seeding Users'
-User.create!([
-  { name: 'alice', family: Family.first, password: 'lol', password_confirmation: 'lol' },
-  { name: 'bob', family: Family.second, password: 'lol', password_confirmation: 'lol' },
-  { name: 'carol', family: Family.second, password: 'lol', password_confirmation: 'lol' },
-])
+Family.find_each do |family|
+  rand(1..10).times do
+    pw = Faker::Internet.password
+    user = User.new(
+      name: Faker::TvShows::RickAndMorty.unique.character,
+      password: pw,
+      password_confirmation: pw,
+      address: Faker::Address.full_address,
+      shirt_size: rand(1..10),
+      pant_size: rand(1..10),
+      shoe_size: Faker::Number.within(range: 1..15),
+      dress_size: rand(1..10),
+    )
+    user.families << family
+    user.save!
+  end
+end
 
 puts 'Seeding Gifts'
-User.first.gifts.new(
-  name: 'Snow Shovel',
-  url: 'https://www.amazon.ca/gp/product/B01LXEQ6UM',
-  notes: "I'm anticipating a lot of snow this year"
-).save!
-
-User.second.gifts.new(
-  name: 'Fingerless Gloves',
-  url: 'https://www.amazon.ca/dp/B0057XA2KS',
-  notes: "I'm sort of against mittens, I also have small hands."
-).save!
-
-User.third.gifts.new(
-  name: 'Knockoff Handbag',
-  url: 'https://you.got.scammed.br',
-  notes: 'ALL MY LINKS ARE FROM AMAZON.COM'
-).save!
-
-User.third.gifts.new(
-  name: 'Fingerless Gloves',
-  url: 'https://www.amazon.ca/dp/B0057XA2KS',
-  notes: 'I want what Bob has!'
-).save!
+User.find_each do |user|
+  rand(1..10).times do
+    gift = Gift.new(
+      name: Faker::Game.title,
+      notes: Faker::TvShows::RickAndMorty.quote,
+      url: Faker::Internet.url(host: 'example.com'),
+    )
+    user.gifts << gift
+    user.save!
+  end
+end

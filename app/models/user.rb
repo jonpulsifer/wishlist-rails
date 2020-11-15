@@ -3,12 +3,23 @@
 
 class User < ApplicationRecord
   has_secure_password
-  belongs_to :family
-  has_many :gifts, dependent: :destroy
+  has_many :family_users
+  has_many :families, through: :family_users
+  has_many :gift_users
+  has_many :gifts, through: :gift_users, dependent: :destroy
 
-  before_validation :normalize_name, on: [:create, :update]
+  after_validation :normalize_name, on: [:create, :update]
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates_presence_of :families, message: 'not found, maybe the pin was wrong.'
+
+  def claimed_gifts
+    gifts.claimed
+  end
+
+  def unclaimed_gifts
+    gifts.unclaimed
+  end
 
   private
 

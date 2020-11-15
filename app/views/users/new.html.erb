@@ -7,15 +7,15 @@
       </div>
       <div class="mdl-card__supporting-text">
         <%= flash_messages %>
-        <%= form_for :user, :url => {:controller => 'users', :action => 'create'} do |f| %>
+        <%= form_with(model: @user, local: true) do |f| %>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <%= f.text_field :name, class: 'mdl-textfield__input' , autofocus: true %>
             <%= f.label :name, class: 'mdl-textfield__label' %>
           </div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <%= f.text_field :family_id, class: 'mdl-textfield__input' %>
+            <%= f.text_field :pin, class: 'mdl-textfield__input' %>
             <%= f.label :family_pin, class: 'mdl-textfield__label' %>
-          </div>          
+          </div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <%= f.password_field :password, class: 'mdl-textfield__input' %>
             <%= f.label :password, class: 'mdl-textfield__label' %>

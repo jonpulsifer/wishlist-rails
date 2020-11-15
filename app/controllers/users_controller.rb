@@ -11,19 +11,16 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-    @users = User.where.not(id: current_user)
+    @users = FamilyUser.where(family_id: current_user.family_ids).collect(&:user)
   end
 
   def create
-    @user = User.new(
-      name: user_params[:name],
-      password: user_params[:password],
-      password_confirmation: user_params[:password_confirmation],
-      family: Family.find_by(pin: user_params[:family_id])
-    )
+    @user = User.new(user_params.except(:pin))
+    family = Family.find_by(pin: user_params[:pin])
+    @user.families << family unless family.nil?
     if @user.save
       log_in(@user)
-      redirect_to(@user)
+      redirect_to(edit_user_path(@user))
     else
       flash.now[:notice] = "Oops, couldn't create account."
       if @user.errors.any?
@@ -41,13 +38,15 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @users = User.where.not(id: current_user)
-    @gifts = Gift.claimed_by_user(@user)
+    @is_current_user = @user == current_user
+    @claimed_gifts = Gift.claimed_by_user(@user)
   end
 
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
+    family = Family.find_by(pin: user_params[:pin])
+    @user.families << family unless family.nil?
+    if @user.update(user_params.except(:pin))
       redirect_to(@user)
     else
       render('edit')
@@ -60,8 +59,8 @@ class UsersController < ApplicationController
     # strong parameters - whitelist of allowed fields #=> permit(:name, :email, ...)
     # that can be submitted by a form to the user model #=> require(:user)
     params.require(:user).permit(
-      :name, :password, :password_confirmation, :family_id,
-      :address, :shirt_size, :pant_size, :shoe_size, :dress_size
+      :name, :password, :password_confirmation,
+      :address, :shirt_size, :pant_size, :shoe_size, :dress_size, :pin
     )
   end
 end

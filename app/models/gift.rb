@@ -1,9 +1,10 @@
 # typed: false
 # frozen_string_literal: true
-require 'uri'
 
 class Gift < ApplicationRecord
-  belongs_to :user
+  has_one :gift_user
+  has_one :user, through: :gift_user
+
   validates :name, presence: true
   scope :claimed, -> { where("claimed_by IS NOT NULL") }
   scope :unclaimed, -> { where("claimed_by IS NULL") }

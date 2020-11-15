@@ -1,0 +1,33 @@
+<span class="mdl-list__item-secondary-content">
+<%= form_for(gift, html: {class: "gift-action-center-icon"}) do |f| %>
+  <% if current_user == gift.user %>
+    <div class="gift-action-text">Edit</div>
+    <%= link_to(edit_gift_path(gift)) do %>
+      <span class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons gift-action-edit">edit</i>
+      </span>
+    <% end %>
+  <% else %>
+    <% if !gift.claimed_by? %>
+      <%= f.hidden_field :claimed_by, value: current_user.id %>
+      <div class="gift-action-text">Claim</div>
+      <%= button_tag(type: 'submit', class: "mdl-button mdl-js-button mdl-button--icon mdl-button--colored") do %>
+          <i class="material-icons">card_giftcard</i>
+      <% end %>
+    <% else %>
+      <% if gift.claimed_by == current_user.id %>
+        <%= f.hidden_field :claimed_by, value: nil %>
+        <div class="gift-action-text">Unclaim</div>
+        <%= button_tag(type: 'submit', class: "mdl-button mdl-js-button mdl-button--icon mdl-button--accent") do %>
+            <i class="material-icons gift-action-unclaimed">card_giftcard</i>
+        <% end %>
+      <% else %>
+        <div class="gift-action-text">Claimed</div>
+        <%= button_tag(type: 'button', disabled: true, class: "mdl-button mdl-js-button mdl-button--icon mdl-button--disabled ") do %>
+            <i class="material-icons">sentiment_very_satisfied</i>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+</span>

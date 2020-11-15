@@ -3,32 +3,34 @@
     <h3 class="mdl-card__title-text "><%= gift.name %></h3>
   </div>
   <div class="mdl-card__supporting-text">
-    <ul class="mdl-list">
-      <% unless gift.notes.nil? %>
-      <li class="mdl-list__item mdl-list__item--three-line">
-        <span class="mdl-list__item-primary-content">
-          <i class="material-icons mdl-list__item-icon">notes</i>
-          <span class="mdl-list__item-text-body">
-            <%= gift.notes %>
+      <% if gift.notes.empty? && gift.url.empty? %>
+        <h2 class="mdl-typography--subhead">Not much here except <%= gift.name %></h2>
+      <% else %>
+      <ul class="mdl-list">
+        <% unless gift.notes.empty? %>
+        <li class="mdl-list__item mdl-list__item--three-line">
+          <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-icon">notes</i>
+            <span class="mdl-list__item-text-body">
+              <%= simple_format(gift.notes) %>
+            </span>
           </span>
-        </span>
-      </li>
+        </li>
+        <% end %>
+      
+        <% unless gift.url.empty? %>
+        <li class="mdl-list__item mdl-list__item--one-line">
+          <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-icon">link</i>
+              <%= link_to gift.url, gift.url, target: :blank %>
+          </span>
+        </li>
+        <% end %>
+      </ul>
+
       <% end %>
-    
-      <% unless gift.url.nil? %>
-      <li class="mdl-list__item mdl-list__item--one-line">
-        <span class="mdl-list__item-primary-content">
-          <i class="material-icons mdl-list__item-icon">link</i>
-            <%= link_to gift.url, gift.url, target: :blank %>
-        </span>
-      </li>
-      <% end %>
-    </ul>
   </div>
   <div class="mdl-card__actions mdl-card--border">
-      <%= render "button-gift-actions", gift: gift, user: @user %>
-      <% if current_user == @user %>
-        <%= link_to "edit", edit_gift_path(gift.id), class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
-      <% end %>
+    <%= render "button-gift-actions", gift: gift %>
   </div>
 </div>

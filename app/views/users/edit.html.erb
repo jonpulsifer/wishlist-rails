@@ -1,7 +1,7 @@
 <% provide(:title, "Edit Profile") %>
-<%= form_for(current_user) do |f| %>
 <%= flash_messages %>
 <div class="mdl-cell">
+  <%= form_with(model: @user, local: true) do |f| %>
   <h2 class="mdl-typography--subhead">Personal Information</h2>
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
       <%= f.text_area :address, class: 'mdl-textfield__input' %>
@@ -13,6 +13,11 @@
       <%= f.label item, class: 'mdl-textfield__label' %>
     </div>
   <% end %>
+  <%= f.submit "Save Profile", class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+  <% end %>
+</div>
+<div class="mdl-cell">
+  <%= form_with(model: @user, local: true) do |f| %>
   <h2 class="mdl-typography--subhead">Login Details</h2>
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <%= f.text_field :name, class: 'mdl-textfield__input', disabled: true %>
@@ -27,7 +32,36 @@
     <%= f.label :password_confirmation, class: 'mdl-textfield__label' %>
   </div>
   <div>
-    <%= f.submit "Save Profile", class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+    <%= f.submit "Change Password", class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
   </div>
+  <% end %>
 </div>
-<% end %>
+<div class="mdl-cell">
+  <%= form_with(model: @user, local: true) do |f| %>
+  <h2 class="mdl-typography--subhead">Families</h2>
+    <% @user.families.each do |family| %>
+      <ul style="padding-inline-start: 0px;">
+        <li class="mdl-list__item mdl-list__item--two-line">
+          <span class="mdl-list__item-primary-content">
+            <i class="material-icons mdl-list__item-icon">family_restroom</i>
+            <span class="mdl-list__item-text-body">
+              <%= family.name %>
+              <span class="mdl-list__item-sub-title">
+                <%= "#{family.users.length} #{family.users.length == 1 ? 'member' : 'members' }" %>
+              </span>
+            </span>
+
+            </span>
+          </span>
+        </li>
+      </ul>
+    <% end %>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <%= f.text_field :pin, class: 'mdl-textfield__input' %>
+    <%= f.label :family_pin, class: 'mdl-textfield__label' %>
+  </div>
+  <div>
+    <%= f.submit "Join", class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+  </div>
+  <% end %>
+</div>
