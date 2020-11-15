@@ -13,9 +13,17 @@ spec:
   tls:
   - hosts:
     - wishin.app
+    - www.wishin.app
     secretName: wishlist-tls
   rules:
-  - host: wishin.app
+  - host: "*.wishin.app"
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: wishlist
+          servicePort: 8080
+  - host: "wishin.app"
     http:
       paths:
       - path: /
