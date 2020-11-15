@@ -77,20 +77,26 @@ a {
 }
 
 .santa {
-  background-image: url(<%= asset_data_uri 'santadab2.png' %>);
+  background-image: url(<%= asset_data_uri 'santa.png' %>);
   background-origin: content-box;
   background-position: right top;
   background-repeat: no-repeat;
-  background-size: 35%;
-  padding: 10px 10px;
+  background-size: 50%;
 }
 
 .custom-title {
-  font-style: italic;
-  font-weight: 500;
-  color: rgba(63,81,181,1);
+  <%# font-style: italic; %>
+  font-weight: 600;
+  color: rgba(0,0,0,1);
+}
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .nav-link {
   font-size: 16px;
+  color: rgba(0,0,0,1);
 }

@@ -6,7 +6,7 @@
 #
 default: &default
   adapter: mysql2
-  encoding: utf8
+  encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password:
@@ -25,4 +25,5 @@ test:
 
 production:
   <<: *default
+  # database_url: "mysql2://wishlist:wishlist@mysql:3306/wishlist"
   url: <%= Rails.application.credentials.dig(:database_url) %>

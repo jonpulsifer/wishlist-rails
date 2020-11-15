@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 class Gift < ApplicationRecord
-  has_one :gift_user
+  has_one :gift_user, dependent: :destroy
   has_one :user, through: :gift_user
 
   validates :name, presence: true

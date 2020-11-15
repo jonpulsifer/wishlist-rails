@@ -10,7 +10,7 @@ spec:
   # type: ClusterIP
   ports:
   - port: 8080
-    targetPort: 8080
+    targetPort: 3000
   selector:
     app.kubernetes.io/name: wishlist
     app.kubernetes.io/part-of: wishlist

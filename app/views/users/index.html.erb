@@ -1,9 +1,10 @@
 <% provide(:title, "People with gifts") %>
 <%= flash_messages %>
 <div class="mdl-cell">
-  <ul class="mdl-list">
-    <% @users.each do |user| %>
-      <% if user.gifts.any? %>
+  <% @families.each do |family| %>
+    <h2 class="mdl-typography--subhead"><%= family.name %></h2>
+    <ul class="mdl-list">
+      <% family.users_except(current_user.id).each do |user| %>
         <li class="mdl-list__item mdl-list__item--two-line">
           <span class="mdl-list__item-primary-content">
             <i class="material-icons mdl-list__item-icon">person</i>
@@ -13,6 +14,6 @@
           </span>
         </li>
       <% end %>
-    <% end %>
-  </ul>
+    </ul>
+  <% end %>
 </div>

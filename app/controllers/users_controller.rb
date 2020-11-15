@@ -12,12 +12,7 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-    @users = FamilyUser
-      .select(:user_id)
-      .distinct
-      .where(family_id: current_user.family_ids)
-      .where.not(user_id: current_user.id)
-      .collect(&:user)
+    @families = @user.families
   end
 
   def create

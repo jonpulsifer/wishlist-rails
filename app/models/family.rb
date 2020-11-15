@@ -7,4 +7,8 @@ class Family < ApplicationRecord
   has_many :gift_users
   has_many :gifts, through: :gift_users, source: :user
   validates :pin, presence: true, uniqueness: true
+
+  def users_except(id)
+    users.where.not(id: id)
+  end
 end

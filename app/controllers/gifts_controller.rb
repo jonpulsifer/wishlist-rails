@@ -67,7 +67,7 @@ class GiftsController < ApplicationController
   def destroy
     @gift = Gift.find(params[:id])
 
-    if @gift.delete
+    if @gift.destroy
       redirect_to(:new_gift)
     else
       render(:edit)

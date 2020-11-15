@@ -1,5 +1,5 @@
-name: Lint Dockerfile
-on: [push, pull_request]
+name: Hadolint
+on: [push]
 
 jobs:
   linter:

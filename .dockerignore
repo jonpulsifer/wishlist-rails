@@ -6,3 +6,4 @@ node_modules/
 logs/
 tmp/
 bootstrap.sh
+config/master.key

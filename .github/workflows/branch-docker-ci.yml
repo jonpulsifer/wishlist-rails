@@ -1,5 +1,5 @@
-name: PR Docker builder
-on: [push, pull_request]
+name: docker build
+on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,7 +10,24 @@ jobs:
         RAILS_ENV: production
       run: |
         docker build -t jonpulsifer/wishlist-rails:${{ github.sha }} .
-    - name: Container security scan
-      uses: Azure/container-scan@v0
-      with:
-        image-name: jonpulsifer/wishlist-rails:${{ github.sha }}
+    # This is producing false positives, disable for now
+    # - name: Container security scan
+    #   uses: Azure/container-scan@v0
+    #   with:
+    #     image-name: jonpulsifer/wishlist-rails:${{ github.sha }}
+  tests:
+    name: rubocop
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: ${{ env.RUBY_VERSION }}
+      - name: install dependencies
+        run: |
+          gem install bundler --no-rdoc --no-ri
+          bundle install
+      - name: style
+        run: bundle exec rubocop
+      - name: type check
+        run: bundle exec srb tc
