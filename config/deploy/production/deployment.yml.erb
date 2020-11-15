@@ -35,30 +35,11 @@ spec:
         - rails
         - db:migrate
         env:
-        - name: SECRET_KEY_BASE
+        - name: RAILS_MASTER_SECRET
           valueFrom:
             secretKeyRef:
-              name: secret-key-base
-              key: SECRET_KEY_BASE
-        - name: MYSQL_HOSTNAME
-          valueFrom:
-            secretKeyRef:
-              name: database
-              key: host
-        - name: MYSQL_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: database
-              key: user
-        - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: database
-              key: password
-        - name: GOOGLE_PROJECT
-          value: wishlist-4362e
-        - name: MYSQL_DATABASE
-          value: wishlist
+              name: rails-secret
+              key: rails-master-secret
         - name: RAILS_ENV
           value: production
         - name: RAILS_SERVE_STATIC_FILES
@@ -66,7 +47,7 @@ spec:
         - name: ENVIRONMENT
           value: production
         ports:
-        - containerPort: 8080
+        - containerPort: 3000
       containers:
       - name: wishlist
         image: gcr.io/trusted-builds/wishlist:<%= current_sha %>
@@ -77,30 +58,11 @@ spec:
         - rails
         - server
         env:
-        - name: SECRET_KEY_BASE
+        - name: RAILS_MASTER_SECRET
           valueFrom:
             secretKeyRef:
-              name: secret-key-base
-              key: SECRET_KEY_BASE
-        - name: MYSQL_HOSTNAME
-          valueFrom:
-            secretKeyRef:
-              name: database
-              key: host
-        - name: MYSQL_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: database
-              key: user
-        - name: MYSQL_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: database
-              key: password
-        - name: GOOGLE_PROJECT
-          value: wishlist-4362e
-        - name: MYSQL_DATABASE
-          value: wishlist
+              name: rails-secret
+              key: rails-master-secret
         - name: RAILS_ENV
           value: production
         - name: RAILS_SERVE_STATIC_FILES
@@ -108,4 +70,4 @@ spec:
         - name: ENVIRONMENT
           value: production
         ports:
-        - containerPort: 8080
+        - containerPort: 3000

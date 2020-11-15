@@ -2,15 +2,18 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  skip_before_action :verify_authenticity_token
   protect_from_forgery with: :exception
+  before_action :require_login
+
   include SessionsHelper
+
+  helper_method :current_user
+  helper_method :logged_in?
 
   private
 
-  def logged_in_user
+  def require_login
     unless logged_in?
-      flash[:error] = "Please sign in to continue"
       redirect_to(login_url)
     end
   end

@@ -1,0 +1,16 @@
+name: PR Docker builder
+on: [pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build docker image
+      env:
+        RAILS_ENV: production
+      run: |
+        docker build -t jonpulsifer/wishlist-rails:${{ github.sha }} .
+    - name: Container security scan
+      uses: Azure/container-scan@v0
+      with:
+        image-name: jonpulsifer/wishlist-rails:${{ github.sha }}

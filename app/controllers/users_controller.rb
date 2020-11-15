@@ -2,7 +2,8 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: %i[index edit show update]
+  skip_before_action :require_login, only: [:new, :create]
+  before_action :set_user, only: [:edit, :show, :update, :destroy]
   layout "login", only: [:new, :create]
 
   def new
@@ -38,18 +39,17 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
-    render('error', layout: false) unless current_user == @user
+    if current_user != @user
+      redirect_to(root_path)
+    end
   end
 
   def show
-    @user = User.find(params[:id])
     @is_current_user = @user == current_user
     @claimed_gifts = Gift.claimed_by_user(@user)
   end
 
   def update
-    @user = User.find(params[:id])
     family = Family.find_by(pin: user_params[:pin])
     @user.families << family unless family.nil?
     if @user.update(user_params.except(:pin))
@@ -60,6 +60,11 @@ class UsersController < ApplicationController
   end
 
   private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     # strong parameters - whitelist of allowed fields #=> permit(:name, :email, ...)

@@ -12,7 +12,7 @@ module WishlistApp
     config.load_defaults(6.0)
     config.action_dispatch.default_headers.merge!({
       'X-Frame-Options' => 'DENY',
-      'Strict-Transport-Security' => 'max-age=631138519; includeSubdomains',
+      # 'Strict-Transport-Security' => 'max-age=631138519; includeSubdomains',
     })
   end
 end

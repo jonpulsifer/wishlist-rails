@@ -2,8 +2,6 @@
 # frozen_string_literal: true
 
 class GiftsController < ApplicationController
-  before_action :logged_in_user
-
   def new
     @gift = Gift.new
     @gifts = current_user.gifts
