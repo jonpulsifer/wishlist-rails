@@ -34,7 +34,7 @@ spec:
         image: jonpulsifer/wishlist-rails:latest
         imagePullPolicy: Always
         env:
-        - name: RAILS_MASTER_SECRET
+        - name: RAILS_MASTER_KEY
           valueFrom:
             secretKeyRef:
               name: rails-secret
