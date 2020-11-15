@@ -43,8 +43,10 @@ class GiftsController < ApplicationController
     @claimed_gifts = []
     @unclaimed_gifts = []
     FamilyUser
-      .where.not(user_id: current_user.id)
+      .select(:user_id)
+      .distinct
       .where(family_id: current_user.family_ids)
+      .where.not(user_id: current_user.id)
       .each do |family_user|
         family_user.user.claimed_gifts.each do |gift|
           @claimed_gifts << gift
