@@ -31,14 +31,14 @@ spec:
       serviceAccountName: wishlist
       initContainers:
       - name: migration
-        image: gcr.io/trusted-builds/wishlist:<%= current_sha %>
+        image: jonpulsifer/wishlist-rails:latest
         imagePullPolicy: Always
         env:
         - name: RAILS_MASTER_SECRET
           valueFrom:
             secretKeyRef:
               name: rails-secret
-              key: rails-master-secret
+              key: rails-master-key
         - name: RAILS_ENV
           value: production
         - name: RAILS_DB_MIGRATE
@@ -50,14 +50,14 @@ spec:
         resources: {}
       containers:
       - name: wishlist
-        image: gcr.io/trusted-builds/wishlist:<%= current_sha %>
+        image: jonpulsifer/wishlist-rails:latest
         imagePullPolicy: Always
         env:
-        - name: RAILS_MASTER_SECRET
+        - name: RAILS_MASTER_KEY
           valueFrom:
             secretKeyRef:
               name: rails-secret
-              key: rails-master-secret
+              key: rails-master-key
         - name: RAILS_ENV
           value: production
         - name: RAILS_SERVE_STATIC_FILES
