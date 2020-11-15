@@ -11,7 +11,12 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-    @users = FamilyUser.where(family_id: current_user.family_ids).collect(&:user)
+    @users = FamilyUser
+      .select(:user_id)
+      .distinct
+      .where(family_id: current_user.family_ids)
+      .where.not(user_id: current_user.id)
+      .collect(&:user)
   end
 
   def create
