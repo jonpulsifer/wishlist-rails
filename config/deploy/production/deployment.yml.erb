@@ -33,11 +33,6 @@ spec:
       - name: migration
         image: gcr.io/trusted-builds/wishlist:<%= current_sha %>
         imagePullPolicy: Always
-        command:
-        - bundle
-        - exec
-        - rails
-        - db:migrate
         env:
         - name: RAILS_MASTER_SECRET
           valueFrom:
@@ -46,6 +41,8 @@ spec:
               key: rails-master-secret
         - name: RAILS_ENV
           value: production
+        - name: RAILS_DB_MIGRATE
+          value: "1"
         - name: RAILS_SERVE_STATIC_FILES
           value: "true"
         ports:
@@ -55,11 +52,6 @@ spec:
       - name: wishlist
         image: gcr.io/trusted-builds/wishlist:<%= current_sha %>
         imagePullPolicy: Always
-        command:
-        - bundle
-        - exec
-        - rails
-        - server
         env:
         - name: RAILS_MASTER_SECRET
           valueFrom:
