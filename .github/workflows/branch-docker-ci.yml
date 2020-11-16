@@ -25,7 +25,7 @@ jobs:
           ruby-version: 2.7.2
       - name: install dependencies
         run: |
-          gem install bundler --no-rdoc --no-ri
+          gem install bundler --no-document
           bundle install
       - name: style
         run: bundle exec rubocop
