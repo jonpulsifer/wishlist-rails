@@ -15,8 +15,8 @@ jobs:
     #   uses: Azure/container-scan@v0
     #   with:
     #     image-name: jonpulsifer/wishlist-rails:${{ github.sha }}
-  tests:
-    name: rubocop
+  ci:
+    name: Ruby CI
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -27,7 +27,7 @@ jobs:
         run: |
           gem install bundler --no-document
           bundle install
-      - name: style
+      - name: Lint (rubocop)
         run: bundle exec rubocop
-      - name: type check
+      - name: Type Check (sorbet)
         run: bundle exec srb tc
