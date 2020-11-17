@@ -3,7 +3,7 @@
     <span class="mdl-list__item-primary-content">
       <%= link_to gift.name, gift_path(gift) %>
       <span class="mdl-list__item-sub-title">
-        <%= link_to gift.user.name.capitalize, user_path(gift.user), class: "mdl-list__item--one-line mdl-list__item-primary-content mdl-list__item-sub-title" %>
+        <%= link_to gift.user.name.titleize, user_path(gift.user), class: "mdl-list__item--one-line mdl-list__item-primary-content mdl-list__item-sub-title" %>
       </span>
     </span>
     <%= render "list-item-gift-actions", gift: gift %>

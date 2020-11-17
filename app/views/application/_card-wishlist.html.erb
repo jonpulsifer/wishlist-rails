@@ -1,6 +1,6 @@
 <div class="mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
-    <h3 class="mdl-card__title-text"><%= (current_user.id == user.id ? 'Your' : user.name.capitalize + "'s") + " Gifts" %></h3>
+    <h3 class="mdl-card__title-text"><%= (current_user.id == user.id ? 'Your' : user.name.titleize + "'s") + " Gifts" %></h3>
   </div>
   <div class="mdl-card__supporting-text">
     <% if user.gifts.any? %>

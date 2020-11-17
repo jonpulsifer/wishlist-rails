@@ -8,12 +8,49 @@
     <%= link_to("Wishin.app", root_path, class: "custom-title") %>
   </span>
   <nav class="mdl-navigation">
-      <%= link_to 'Your Profile', user_path(current_user), class: "mdl-navigation__link nav-link" %>
-      <%= link_to 'All Gifts', gifts_path, class: "mdl-navigation__link nav-link" %>
-      <%= link_to 'People', users_path, class: "mdl-navigation__link nav-link" %>
-      <%= link_to 'Edit Profile', edit_user_path(current_user), class: "mdl-navigation__link nav-link" %>
+    <%= link_to(new_gift_path, class: "nav-link") do %>
+      <span class="mdl-navigation__link">
+        <i class="material-icons nav-icon">add_box</i>
+        Add Gift
+      </span>
+    <% end %>
+    <%= link_to(available_gifts_path, class: "nav-link") do %>
+      <span class="mdl-navigation__link">
+        <i class="material-icons nav-icon">card_giftcard</i>
+        Available Gifts
+      </span>
+    <% end %>
+    <%= link_to(claimed_gifts_path, class: "nav-link") do %>
+      <span class="mdl-navigation__link">
+        <i class="material-icons gift-action-unclaim">card_giftcard</i>
+        Your Claimed Gifts
+      </span>
+    <% end %>  
+    <%= link_to(users_path, class: "nav-link") do %>
+      <span class="mdl-navigation__link">
+        <i class="material-icons nav-icon">face</i>
+        Family Members
+      </span>
+    <% end %>
   </nav>
   <nav class="mdl-navigation bottom-nav">
-    <%= link_to "Logout (#{current_user.name.capitalize})", logout_path, class: "mdl-navigation__link nav-link" %>
+    <%= link_to(user_path(current_user), class: "nav-link") do %>
+      <span class="mdl-navigation__link">
+        <i class="material-icons nav-icon">account_circle</i>
+        Your Profile
+      </span>
+    <% end %>
+    <%= link_to(edit_user_path(current_user), class: "nav-link") do %>
+      <span class="mdl-navigation__link">
+        <i class="material-icons nav-icon">edit</i>
+        Edit Profile
+      </span>
+    <% end %>
+    <%= link_to(logout_path, class: "nav-link") do %>
+      <span class="mdl-navigation__link">
+        <i class="material-icons nav-icon flip">exit_to_app</i>
+        <%= "Logout (#{current_user.name.titleize})" %>
+      </span>
+    <% end %>
   </nav>
 </div>

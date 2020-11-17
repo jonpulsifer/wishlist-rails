@@ -1,7 +1,7 @@
 <% if @is_current_user %>
   <% provide(:title, "Home") %>
 <% else %>
-  <% provide(:title, "#{@user.name.capitalize}'s Profile") %>
+  <% provide(:title, "#{@user.name.titleize}'s Profile") %>
 <% end %>
 <%= flash_messages %>
 <div class="mdl-cell">
@@ -13,5 +13,5 @@
   </div>
 <% end %>
 <div class="mdl-cell">
-  <%= render 'card-user-details', user: @user, is_current_user: @is_current_user %>
+  <%= render 'card-user-details', user: @user %>
 </div>

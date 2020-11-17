@@ -2,6 +2,8 @@
 # frozen_string_literal: true
 
 class GiftsController < ApplicationController
+  before_action :set_gift, only: [:edit, :show, :update, :destroy]
+
   def new
     @gift = Gift.new
     @gifts = current_user.gifts
@@ -34,12 +36,39 @@ class GiftsController < ApplicationController
   end
 
   def show
-    @gift = Gift.find(params[:id])
+    @is_current_user = @gift.user == current_user
   end
 
   def index
-    @claimed_gifts = []
-    @unclaimed_gifts = []
+    @gifts = []
+    FamilyUser
+      .select(:user_id)
+      .distinct
+      .where(family_id: current_user.family_ids)
+      .where.not(user_id: current_user.id)
+      .each do |family_user|
+        family_user.user.gifts.each do |gift|
+          @gifts << gift
+        end
+      end
+  end
+
+  def available
+    @gifts = []
+    FamilyUser
+      .select(:user_id)
+      .distinct
+      .where(family_id: current_user.family_ids)
+      .where.not(user_id: current_user.id)
+      .each do |family_user|
+        family_user.user.unclaimed_gifts.each do |gift|
+          @gifts << gift
+        end
+      end
+  end
+
+  def claimed
+    @gifts = []
     FamilyUser
       .select(:user_id)
       .distinct
@@ -47,16 +76,12 @@ class GiftsController < ApplicationController
       .where.not(user_id: current_user.id)
       .each do |family_user|
         family_user.user.claimed_gifts.each do |gift|
-          @claimed_gifts << gift
-        end
-        family_user.user.unclaimed_gifts.each do |gift|
-          @unclaimed_gifts << gift
+          @gifts << gift unless gift.claimed_by != current_user.id
         end
       end
   end
 
   def update
-    @gift = Gift.find(params[:id])
     if @gift.update_attributes(gift_params)
       redirect_back(fallback_location: root_path)
     else
@@ -65,8 +90,6 @@ class GiftsController < ApplicationController
   end
 
   def destroy
-    @gift = Gift.find(params[:id])
-
     if @gift.destroy
       redirect_to(:new_gift)
     else
@@ -75,6 +98,10 @@ class GiftsController < ApplicationController
   end
 
   private
+
+  def set_gift
+    @gift = Gift.find(params[:id])
+  end
 
   def gift_params
     # strong parameters - whitelist of allowed fields #=> permit(:name, :email, ...)

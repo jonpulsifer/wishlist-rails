@@ -3,8 +3,9 @@
 
 class UsersController < ApplicationController
   skip_before_action :require_login, only: [:new, :create]
-  before_action :set_user, only: [:edit, :show, :update, :destroy]
   layout "login", only: [:new, :create]
+
+  before_action :set_user, only: [:edit, :show, :update, :destroy]
 
   def new
     @user = User.new

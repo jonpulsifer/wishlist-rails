@@ -32,16 +32,20 @@
   float: right;
 }
 
-.gift-action-unclaimed {
-  color: rgba(165,0,0,.85)
+.gift-action-claim {
+  color: rgba(63,81,181,1)
 }
 
-.button-gift-action-unclaimed {
+.gift-action-unclaim {
+  color: rgba(165,0,0,.8)
+}
+
+.button-gift-action-unclaim {
   color: rgba(255,255,255,1);
   background-color: rgba(165,0,0,.8);
 }
 
-.button-gift-action-unclaimed:hover {
+.button-gift-action-unclaim:hover {
   color: rgba(255,255,255,1);
   background-color: rgba(200,0,0,.85);
 }
@@ -96,7 +100,23 @@ a {
   width: 100%;
 }
 
-.nav-link {
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link {
+  padding: 16px;
+  margin: 0 0;
   font-size: 16px;
-  color: rgba(0,0,0,1);
+  font-weight: 600;
+  color: rgba(63,81,181,1)
+}
+
+.mdl-layout__drawer .mdl-navigation .nav-link .mdl-navigation__link {
+  color: rgba(0,0,0,1)
+}
+
+.nav-icon {
+  color: rgba(63,81,181,1)
+}
+
+.flip {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
 }

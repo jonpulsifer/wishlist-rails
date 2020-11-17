@@ -1,6 +1,6 @@
 <div class="mdl-card mdl-shadow--2dp">
   <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
-    <h3 class="mdl-card__title-text "><%= is_current_user ? 'Your' : "#{user.name.capitalize}'s" %> Details</h3>
+    <h3 class="mdl-card__title-text "><%= @is_current_user ? 'Your' : "#{user.name.titleize}'s" %> Details</h3>
   </div>
   <div class="mdl-card__supporting-text">
     <ul class="mdl-list">
@@ -31,7 +31,7 @@
     <% if current_user == @user %>
       <%= link_to "edit profile", edit_user_path(user), class: "mdl-button mdl-js-button mdl-button--colored" %>
     <% else %>
-      <%= link_to "people", users_path, class: "mdl-button mdl-js-button mdl-button--colored" %>
+      <%= link_to "family members", users_path, class: "mdl-button mdl-js-button mdl-button--colored" %>
     <% end %>
   </div>
 </div>

@@ -6,7 +6,7 @@
       <% options = { action: "Claim", claimed_by: current_user.id, style: "mdl-button--colored mdl-button--raised" } %>
     <% else %>
       <% if gift.claimed_by == current_user.id %>
-        <% options = { action: "Unclaim", claimed_by: nil, style: "mdl-button--raised button-gift-action-unclaimed" } %>
+        <% options = { action: "Unclaim", claimed_by: nil, style: "mdl-button--raised button-gift-action-unclaim" } %>
       <% else %>
         <% options = { action: "Claimed", claimed_by: gift.claimed_by, style: "mdl-button--disabled" } %>
       <% end %>

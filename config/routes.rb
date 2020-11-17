@@ -4,6 +4,9 @@
 Rails.application.routes.draw do
   root to: 'users#index'
   resources :users
+
+  get '/available' => 'gifts#available', as: 'available_gifts'
+  get '/claimed' => 'gifts#claimed', as: 'claimed_gifts'
   resources :gifts
 
   # login

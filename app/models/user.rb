@@ -21,6 +21,10 @@ class User < ApplicationRecord
     gifts.unclaimed
   end
 
+  def naughty_or_nice_emoji
+    unclaimed_gifts.count > 0 ? '😇' : '😈'
+  end
+
   private
 
   def normalize_name

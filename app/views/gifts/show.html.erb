@@ -4,5 +4,8 @@
   <%= render 'card-gift', gift: @gift %>
 </div>
 <div class="mdl-cell">
+  <%= render 'card-user-details', user: @gift.user %>
+</div>
+<div class="mdl-cell">
   <%= render 'card-wishlist', user: @gift.user %>
 </div>
