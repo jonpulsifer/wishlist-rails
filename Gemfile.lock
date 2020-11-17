@@ -223,7 +223,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    tapioca (0.4.7)
+    tapioca (0.4.8)
       parlour (>= 2.1.0)
       pry (>= 0.12.2)
       sorbet-runtime
