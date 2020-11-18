@@ -4,9 +4,8 @@ class AddUserIdToGifts < ActiveRecord::Migration[6.0]
     reversible do |dir|
       dir.up do
         add_reference(:gifts, :user)
-        GiftUser.find_each do |gift_user|
-          gift = gift_user.gift
-          gift.user_id = gift_user.user_id
+        gift.find_each do |gift|
+          gift.user_id = gift.gift_user.user_id
           gift.save!
         end
         drop_join_table(:gift, :users)
