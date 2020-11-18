@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class AddUserIdToGifts < ActiveRecord::Migration[6.0]
   def change
     reversible do |dir|
@@ -16,7 +17,7 @@ class AddUserIdToGifts < ActiveRecord::Migration[6.0]
           t.references(:gift, null: false, foreign_key: true)
           t.references(:user, null: false, foreign_key: true)
           t.index([:gift_id, :user_id], unique: true)
-    
+
           t.timestamps
         end
         remove_reference(:gifts, :user)

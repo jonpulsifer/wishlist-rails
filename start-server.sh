@@ -10,6 +10,7 @@ fi
 
 if [ "$RAILS_DB_MIGRATE" = "1" ]; then
   bundle exec rake db:migrate
+  exit 0
 fi
 
 bundle exec rails assets:precompile
