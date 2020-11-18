@@ -16,7 +16,7 @@ spec:
     - www.wishin.app
     secretName: wishlist-tls
   rules:
-  - host: "*.wishin.app"
+  - host: "www.wishin.app"
     http:
       paths:
       - path: /
