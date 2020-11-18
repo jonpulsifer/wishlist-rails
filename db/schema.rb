@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_214530) do
+ActiveRecord::Schema.define(version: 2020_11_18_025248) do
 
   create_table "families", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -27,16 +27,6 @@ ActiveRecord::Schema.define(version: 2020_10_08_214530) do
     t.index ["user_id"], name: "index_family_users_on_user_id"
   end
 
-  create_table "gift_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "gift_id", null: false
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["gift_id", "user_id"], name: "index_gift_users_on_gift_id_and_user_id", unique: true
-    t.index ["gift_id"], name: "index_gift_users_on_gift_id"
-    t.index ["user_id"], name: "index_gift_users_on_user_id"
-  end
-
   create_table "gifts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.text "url"
@@ -44,6 +34,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_214530) do
     t.bigint "claimed_by"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_gifts_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -60,6 +52,4 @@ ActiveRecord::Schema.define(version: 2020_10_08_214530) do
 
   add_foreign_key "family_users", "families"
   add_foreign_key "family_users", "users"
-  add_foreign_key "gift_users", "gifts"
-  add_foreign_key "gift_users", "users"
 end

@@ -4,18 +4,18 @@
   </div>
   <div class="mdl-card__supporting-text">
     <% if user.gifts.any? %>
-      <%= render "gift-list", gifts: user.gifts %>
+      <%= render "gift-list", gifts: gifts %>
     <% else %>
       <h6>No gifts found! 😞</h6>
     <% end %>
   </div>
   <div class="mdl-card__actions mdl-card--border">
-    <% if current_user == user && !current_page?(controller: 'gifts', action: 'new') %>
+    <% if current_user == user && !current_page?(new_gift_path) %>
       <%= link_to "Add New Gift", :new_gift, class: "mdl-button mdl-js-button mdl-button--colored" %>
     <% else %>
-      <%= link_to "All gifts", gifts_path, class: "mdl-button mdl-js-button mdl-button--colored" %>
+      <%= link_to "All Available Gifts", available_gifts_path, class: "mdl-button mdl-js-button mdl-button--colored" %>
     <% end %>
-    <% if current_page?(controller: 'gifts', action: 'new') %>
+    <% if current_page?(new_gift_path) %>
       <%= link_to "Go Home", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
     <% end %>
   </div>

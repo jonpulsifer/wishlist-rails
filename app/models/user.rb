@@ -3,10 +3,9 @@
 
 class User < ApplicationRecord
   has_secure_password
+  has_many :gifts, dependent: :destroy
   has_many :family_users, dependent: :destroy
   has_many :families, through: :family_users
-  has_many :gift_users, dependent: :destroy
-  has_many :gifts, through: :gift_users
 
   after_validation :normalize_name, on: [:create, :update]
 
@@ -22,7 +21,7 @@ class User < ApplicationRecord
   end
 
   def naughty_or_nice_emoji
-    unclaimed_gifts.count > 0 ? '😇' : '😈'
+    gifts.unclaimed.count > 0 ? '😇' : '😈'
   end
 
   private

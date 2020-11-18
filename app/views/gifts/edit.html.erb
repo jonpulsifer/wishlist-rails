@@ -32,5 +32,26 @@
   </div>
 </div>
 <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-  <%= render 'card-wishlist', user: current_user %>
+  <div class="mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+      <h3 class="mdl-card__title-text"><%= (current_user.id == @gift.user.id ? 'Your' : @gift.user.name.titleize + "'s") + " Gifts" %></h3>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <% if @gift.user.gifts.any? %>
+        <%= render "gift-list", gifts: @gift.user.gifts %>
+      <% else %>
+        <h6>No gifts found! 😞</h6>
+      <% end %>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <% if current_user == @gift.user && !current_page?(new_gift_path) %>
+        <%= link_to "Add New Gift", :new_gift, class: "mdl-button mdl-js-button mdl-button--colored" %>
+      <% else %>
+        <%= link_to "All Available Gifts", available_gifts_path, class: "mdl-button mdl-js-button mdl-button--colored" %>
+      <% end %>
+      <% if current_page?(new_gift_path) %>
+        <%= link_to "Go Home", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
+      <% end %>
+    </div>
+  </div>
 </div>

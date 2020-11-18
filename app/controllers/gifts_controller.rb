@@ -11,10 +11,9 @@ class GiftsController < ApplicationController
 
   def create
     @user = User.find(gift_params[:user_id])
-    @gift = Gift.new(gift_params.except(:user_id))
+    @gift = @user.gifts.new(gift_params)
 
     if @gift.save
-      @user.gifts << @gift
       # If user saves in the db successfully:
       flash[:notice] = 'Gift created!'
       redirect_to(:new_gift)
@@ -40,17 +39,7 @@ class GiftsController < ApplicationController
   end
 
   def index
-    @gifts = []
-    FamilyUser
-      .select(:user_id)
-      .distinct
-      .where(family_id: current_user.family_ids)
-      .where.not(user_id: current_user.id)
-      .each do |family_user|
-        family_user.user.gifts.each do |gift|
-          @gifts << gift
-        end
-      end
+    redirect_to(:available_gifts)
   end
 
   def available

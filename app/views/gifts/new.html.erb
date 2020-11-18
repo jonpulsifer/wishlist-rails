@@ -1,4 +1,4 @@
-<% provide(:title, "Add Gift to Wishlist") %>
+<% provide(:title, "Add a Gift to Your Wishlist") %>
 <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
   <div class="mdl-card mdl-shadow--2dp">
     <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
@@ -30,5 +30,20 @@
   </div>
 </div>
 <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
-  <%= render 'card-wishlist', user: current_user %>
+  <div class="mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+      <h3 class="mdl-card__title-text">Your Gifts</h3>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <% if current_user.gifts.any? %>
+        <%= render "gift-list", gifts: current_user.gifts %>
+      <% else %>
+        <h6>No gifts found! 😞</h6>
+      <% end %>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <%= link_to "All Available Gifts", available_gifts_path, class: "mdl-button mdl-js-button mdl-button--colored" %>
+      <%= link_to "Go Home", current_user, class: "mdl-button mdl-js-button mdl-button--colored" %>
+    </div>
+  </div>
 </div>

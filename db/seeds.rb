@@ -17,9 +17,9 @@ unless Rails.env.production?
     { name: Faker::Name.unique.last_name, pin: Faker::Number.unique.number(digits: 4) },
   ])
 
-  puts 'Seeding Users'
+  puts 'Seeding Users into Families'
   Family.find_each do |family|
-    rand(1..10).times do
+    rand(3..10).times do
       pw = Faker::Internet.password
       user = User.new(
         name: Faker::TvShows::RickAndMorty.unique.character,
@@ -38,7 +38,7 @@ unless Rails.env.production?
 
   puts 'Seeding Gifts'
   User.find_each do |user|
-    rand(1..10).times do
+    rand(3..15).times do
       gift = Gift.new(
         name: Faker::Game.title,
         notes: Faker::TvShows::RickAndMorty.quote,
@@ -46,6 +46,14 @@ unless Rails.env.production?
       )
       user.gifts << gift
       user.save!
+    end
+  end
+
+  puts 'Seeding Claims'
+  Family.find_each do |family|
+    family.gifts.sample(10).each do |gift|
+      user = family.users.where.not(id: gift.user.id).sample
+      gift.update(claimed_by: user.id)
     end
   end
 end

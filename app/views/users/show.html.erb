@@ -5,7 +5,32 @@
 <% end %>
 <%= flash_messages %>
 <div class="mdl-cell">
-  <%= render 'card-wishlist', user: @user %>
+  <div class="mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title mdl-color--primary mdl-color-text--white">
+      <h3 class="mdl-card__title-text"><%= (@is_current_user ? 'Your' : @user.name.titleize + "'s") + " Gifts" %></h3>
+    </div>
+    <div class="mdl-card__supporting-text">
+      <% if @user.gifts.any? %>
+        <% if @is_current_user %>
+          <%= render "gift-list", gifts: @user.gifts %>
+        <% else %>
+          <%= render "gift-list", gifts: @user.gifts.visible(current_user) %>
+        <% end %>
+      <% else %>
+        <h6>No gifts found! 😞</h6>
+      <% end %>
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <% if @is_current_user && !current_page?(new_gift_path) %>
+        <%= link_to "Add New Gift", :new_gift, class: "mdl-button mdl-js-button mdl-button--colored" %>
+      <% else %>
+        <%= link_to "All Available Gifts", available_gifts_path, class: "mdl-button mdl-js-button mdl-button--colored" %>
+      <% end %>
+      <% if current_page?(new_gift_path) %>
+        <%= link_to "Go Home", user, class: "mdl-button mdl-js-button mdl-button--colored" %>
+      <% end %>
+    </div>
+  </div>
 </div>
 <% if @is_current_user %>
   <div class="mdl-cell">
