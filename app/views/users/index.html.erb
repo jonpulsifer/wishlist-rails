@@ -10,7 +10,7 @@
             <i class="material-icons mdl-list__item-icon"><%= user.naughty_or_nice_emoji %></i>
             <%= link_to user.name.titleize, user_path(user) %>
             <span class="mdl-list__item-sub-title">
-              <%= "#{user.unclaimed_gifts.count} unclaimed" %>
+              <%= "#{user.available_gifts.count} available gift#{'s' unless user.available_gifts.count == 1}" %>
             </span>
           </span>
         </li>

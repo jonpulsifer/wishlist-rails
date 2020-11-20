@@ -8,7 +8,7 @@ metadata:
   name: wishlist
   namespace: wishlist
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: wishlist
@@ -45,6 +45,8 @@ spec:
           value: "1"
         - name: RAILS_SERVE_STATIC_FILES
           value: "true"
+        - name: RAILS_LOG_TO_STDOUT
+          value: "true"
         ports:
         - containerPort: 3000
         resources: {}
@@ -61,6 +63,8 @@ spec:
         - name: RAILS_ENV
           value: production
         - name: RAILS_SERVE_STATIC_FILES
+          value: "true"
+        - name: RAILS_LOG_TO_STDOUT
           value: "true"
         ports:
         - containerPort: 3000

@@ -44,34 +44,16 @@ class GiftsController < ApplicationController
 
   def available
     @gifts = []
-    FamilyUser
-      .select(:user_id)
-      .distinct
-      .where(family_id: current_user.family_ids)
-      .where.not(user_id: current_user.id)
-      .joins(:user)
-      .order(:family_id, '`users`.`name`')
-      .each do |family_user|
-        family_user.user.unclaimed_gifts.each do |gift|
-          @gifts << gift
-        end
-      end
+    Family.find(current_user.family_ids).each do |family|
+      @gifts.push(*family.gifts.where.not(user_id: current_user.id).available)
+    end
   end
 
   def claimed
     @gifts = []
-    FamilyUser
-      .select(:user_id)
-      .distinct
-      .where(family_id: current_user.family_ids)
-      .where.not(user_id: current_user.id)
-      .joins(:user)
-      .order(:family_id, '`users`.`name`')
-      .each do |family_user|
-        family_user.user.claimed_gifts.each do |gift|
-          @gifts << gift unless gift.claimed_by != current_user.id
-        end
-      end
+    Family.find(current_user.family_ids).each do |family|
+      @gifts.push(*family.gifts.where.not(user_id: current_user.id).claimed)
+    end
   end
 
   def update

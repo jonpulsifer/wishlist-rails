@@ -17,12 +17,12 @@ class User < ApplicationRecord
     gifts.claimed
   end
 
-  def unclaimed_gifts
-    gifts.unclaimed
+  def available_gifts
+    gifts.available
   end
 
   def naughty_or_nice_emoji
-    gifts.unclaimed.count > 0 ? '😇' : '😈'
+    gifts.available.count > 0 ? '😇' : '😈'
   end
 
   private

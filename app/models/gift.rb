@@ -7,8 +7,8 @@ class Gift < ApplicationRecord
 
   validates :name, presence: true
 
+  scope :available, -> { where("claimed_by IS NULL") }
   scope :claimed, -> { where("claimed_by IS NOT NULL") }
-  scope :unclaimed, -> { where("claimed_by IS NULL") }
   scope :claimed_by_user, ->(user) { where("claimed_by = ? ", user) }
   scope :visible, ->(user) { where(claimed_by: user.id).or(where(claimed_by: nil)) }
 
