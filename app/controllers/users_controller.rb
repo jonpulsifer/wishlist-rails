@@ -13,7 +13,7 @@ class UsersController < ApplicationController
 
   def index
     @user = current_user
-    @families = @user.families
+    @families = @user.families.order(:name)
   end
 
   def create
@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 
   def show
     @is_current_user = @user == current_user
-    @claimed_gifts = Gift.claimed_by_user(@user)
+    @claimed_gifts = Gift.claimed_by_user(@user).order(:name)
   end
 
   def update

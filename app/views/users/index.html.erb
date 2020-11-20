@@ -4,7 +4,7 @@
   <% @families.each do |family| %>
     <h2 class="mdl-typography--subhead"><%= "#{family.name} Family" %></h2>
     <ul class="mdl-list">
-      <% family.users_except(current_user.id).each do |user| %>
+      <% family.users_except(current_user.id).order(:name).each do |user| %>
         <li class="mdl-list__item mdl-list__item--two-line">
           <span class="mdl-list__item-primary-content">
             <i class="material-icons mdl-list__item-icon"><%= user.naughty_or_nice_emoji %></i>
