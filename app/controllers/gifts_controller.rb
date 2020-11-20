@@ -52,7 +52,7 @@ class GiftsController < ApplicationController
   def claimed
     @gifts = []
     Family.find(current_user.family_ids).each do |family|
-      @gifts.push(*family.gifts.where.not(user_id: current_user.id).claimed)
+      @gifts.push(*family.gifts.claimed_by_user(current_user))
     end
   end
 
