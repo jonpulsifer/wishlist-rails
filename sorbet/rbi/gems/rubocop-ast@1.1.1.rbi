@@ -958,10 +958,10 @@ class RuboCop::AST::NodePattern::Compiler::Debug::Colorizer::Result < ::Struct
   def color_map_for(node, color); end
 
   class << self
-    def [](*_); end
+    def [](*_arg0); end
     def inspect; end
     def members; end
-    def new(*_); end
+    def new(*_arg0); end
   end
 end
 
@@ -1107,7 +1107,7 @@ RuboCop::AST::NodePattern::Lexer::Error = RuboCop::AST::NodePattern::LexerRex::S
 class RuboCop::AST::NodePattern::LexerRex
   def action; end
   def filename; end
-  def filename=(_); end
+  def filename=(_arg0); end
   def location; end
   def match; end
   def matches; end
@@ -1116,9 +1116,9 @@ class RuboCop::AST::NodePattern::LexerRex
   def parse_file(path); end
   def scanner_class; end
   def ss; end
-  def ss=(_); end
+  def ss=(_arg0); end
   def state; end
-  def state=(_); end
+  def state=(_arg0); end
 end
 
 RuboCop::AST::NodePattern::LexerRex::CALL = T.let(T.unsafe(nil), Regexp)

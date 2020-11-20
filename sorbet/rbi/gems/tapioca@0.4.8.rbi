@@ -109,10 +109,12 @@ class Tapioca::Compilers::RequiresCompiler
   def collect_files(config); end
   sig { params(file_path: String).returns(T::Enumerable[String]) }
   def collect_requires(file_path); end
-  sig { params(config: Spoom::Sorbet::Config, file: String).returns(T::Boolean) }
-  def file_ignored_by_sorbet?(config, file); end
+  sig { params(config: Spoom::Sorbet::Config, file_path: Pathname).returns(T::Boolean) }
+  def file_ignored_by_sorbet?(config, file_path); end
   sig { params(files: T::Enumerable[String], name: String).returns(T::Boolean) }
   def name_in_project?(files, name); end
+  sig { params(path: Pathname).returns(T::Array[String]) }
+  def path_parts(path); end
 end
 
 module Tapioca::Compilers::Sorbet

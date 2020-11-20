@@ -4,5 +4,6 @@
 
 # typed: false
 
+module ::Erubi::Engine; end
 module Rake::TaskLib; end
 module Ripper::SexpBuilder; end

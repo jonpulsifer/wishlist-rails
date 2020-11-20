@@ -7,7 +7,7 @@
 module Listen
   class << self
     def logger; end
-    def logger=(_); end
+    def logger=(_arg0); end
     def stop; end
     def to(*args, &block); end
 
@@ -456,9 +456,9 @@ class Listen::Silencer
 
   def configure(options); end
   def ignore_patterns; end
-  def ignore_patterns=(_); end
+  def ignore_patterns=(_arg0); end
   def only_patterns; end
-  def only_patterns=(_); end
+  def only_patterns=(_arg0); end
   def silenced?(relative_path, type); end
 
   private

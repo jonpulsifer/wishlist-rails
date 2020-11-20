@@ -7,7 +7,51 @@
 module TZInfo
 end
 
+class TZInfo::AbsoluteDayOfYearTransitionRule < ::TZInfo::DayOfYearTransitionRule
+  def initialize(day, transition_at = T.unsafe(nil)); end
+
+  def ==(r); end
+  def eql?(r); end
+  def is_always_first_day_of_year?; end
+  def is_always_last_day_of_year?; end
+
+  protected
+
+  def get_day(year); end
+  def hash_args; end
+end
+
 class TZInfo::AmbiguousTime < ::StandardError
+end
+
+class TZInfo::AnnualRules
+  def initialize(std_offset, dst_offset, dst_start_rule, dst_end_rule); end
+
+  def dst_end_rule; end
+  def dst_offset; end
+  def dst_start_rule; end
+  def std_offset; end
+  def transitions(year); end
+
+  private
+
+  def apply_rule(rule, from_offset, to_offset, year); end
+end
+
+class TZInfo::AnnualRules::Transition < ::Struct
+  def at; end
+  def at=(_); end
+  def offset; end
+  def offset=(_); end
+  def previous_offset; end
+  def previous_offset=(_); end
+
+  class << self
+    def [](*_arg0); end
+    def inspect; end
+    def members; end
+    def new(*_arg0); end
+  end
 end
 
 class TZInfo::Country
@@ -84,7 +128,7 @@ class TZInfo::CountryTimezone
 
   class << self
     def new(identifier, latitude, longitude, description = T.unsafe(nil)); end
-    def new!(*_); end
+    def new!(*_arg0); end
   end
 end
 
@@ -130,6 +174,46 @@ class TZInfo::DataTimezoneInfo < ::TZInfo::TimezoneInfo
   def raise_not_implemented(method_name); end
 end
 
+class TZInfo::DayOfMonthTransitionRule < ::TZInfo::DayOfWeekTransitionRule
+  def initialize(month, week, day_of_week, transition_at = T.unsafe(nil)); end
+
+  def ==(r); end
+  def eql?(r); end
+
+  protected
+
+  def get_day(year); end
+  def hash_args; end
+  def offset_start; end
+end
+
+class TZInfo::DayOfWeekTransitionRule < ::TZInfo::TransitionRule
+  def initialize(month, day_of_week, transition_at); end
+
+  def ==(r); end
+  def eql?(r); end
+  def is_always_first_day_of_year?; end
+  def is_always_last_day_of_year?; end
+
+  protected
+
+  def day_of_week; end
+  def hash_args; end
+  def month; end
+end
+
+class TZInfo::DayOfYearTransitionRule < ::TZInfo::TransitionRule
+  def initialize(day, transition_at); end
+
+  def ==(r); end
+  def eql?(r); end
+
+  protected
+
+  def hash_args; end
+  def seconds; end
+end
+
 class TZInfo::InfoTimezone < ::TZInfo::Timezone
   def identifier; end
 
@@ -149,6 +233,9 @@ end
 class TZInfo::InvalidDataSource < ::StandardError
 end
 
+class TZInfo::InvalidPosixTimeZone < ::StandardError
+end
+
 class TZInfo::InvalidTimezoneIdentifier < ::StandardError
 end
 
@@ -156,6 +243,35 @@ class TZInfo::InvalidZoneinfoDirectory < ::StandardError
 end
 
 class TZInfo::InvalidZoneinfoFile < ::StandardError
+end
+
+class TZInfo::JulianDayOfYearTransitionRule < ::TZInfo::DayOfYearTransitionRule
+  def initialize(day, transition_at = T.unsafe(nil)); end
+
+  def ==(r); end
+  def eql?(r); end
+  def is_always_first_day_of_year?; end
+  def is_always_last_day_of_year?; end
+
+  protected
+
+  def get_day(year); end
+  def hash_args; end
+end
+
+TZInfo::JulianDayOfYearTransitionRule::LEAP = T.let(T.unsafe(nil), Integer)
+
+TZInfo::JulianDayOfYearTransitionRule::YEAR = T.let(T.unsafe(nil), Integer)
+
+class TZInfo::LastDayOfMonthTransitionRule < ::TZInfo::DayOfWeekTransitionRule
+  def initialize(month, day_of_week, transition_at = T.unsafe(nil)); end
+
+  def ==(r); end
+  def eql?(r); end
+
+  protected
+
+  def get_day(year); end
 end
 
 class TZInfo::LinkedTimezone < ::TZInfo::InfoTimezone
@@ -192,6 +308,17 @@ module TZInfo::OffsetRationals
 end
 
 class TZInfo::PeriodNotFound < ::StandardError
+end
+
+class TZInfo::PosixTimeZoneParser
+  def parse(tz_string); end
+
+  private
+
+  def check_scan(s, pattern); end
+  def get_offset_from_hms(h, m, s); end
+  def get_seconds_after_midnight_from_hms(h, m, s); end
+  def parse_rule(s, type); end
 end
 
 module TZInfo::RubyCoreSupport
@@ -271,6 +398,7 @@ class TZInfo::TimeOrDateTime
   def to_s; end
   def to_time; end
   def usec; end
+  def wday; end
   def year; end
 
   class << self
@@ -497,6 +625,21 @@ class TZInfo::TransitionDataTimezoneInfo < ::TZInfo::DataTimezoneInfo
   def transition_index(year, month); end
 end
 
+class TZInfo::TransitionRule
+  def initialize(transition_at); end
+
+  def ==(r); end
+  def at(offset, year); end
+  def eql?(r); end
+  def hash; end
+  def transition_at; end
+
+  protected
+
+  def hash_args; end
+  def new_time_or_datetime(year, month = T.unsafe(nil), day = T.unsafe(nil)); end
+end
+
 class TZInfo::UnknownTimezone < ::StandardError
 end
 
@@ -547,18 +690,31 @@ class TZInfo::ZoneinfoDirectoryNotFound < ::StandardError
 end
 
 class TZInfo::ZoneinfoTimezoneInfo < ::TZInfo::TransitionDataTimezoneInfo
-  def initialize(identifier, file_path); end
+  def initialize(identifier, file_path, posix_tz_parser); end
 
 
   private
 
+  def apply_rules_with_transitions(file, transitions, offsets, first_offset_index, rules); end
+  def apply_rules_without_transitions(file, offsets, first_offset_index, rules); end
   def check_read(file, bytes); end
+  def convert_transitions_to_hashes(offset_indexes, transitions); end
   def define_offset(index, offset); end
   def derive_offsets(transitions, offsets); end
+  def find_existing_offset_index(offsets, rule_offset); end
+  def get_rule_offset_index(offsets, offset); end
+  def get_rule_offset_indexes(offsets, annual_rules); end
   def make_signed_int32(long); end
   def make_signed_int64(high, low); end
-  def parse(file); end
+  def offset_equals_rule?(offset, rule_offset); end
+  def offset_matches_rule?(offset, rule_offset); end
+  def parse(file, posix_tz_parser); end
+  def remove_unsupported_negative_transitions(transitions, min_supported); end
+  def replace_last_transition_offset_if_valid_and_needed(file, transitions, offsets); end
+  def validate_and_fix_last_defined_transition_offset(file, offsets, last_defined, first_rule_offset); end
 end
+
+TZInfo::ZoneinfoTimezoneInfo::GENERATE_UP_TO = T.let(T.unsafe(nil), Integer)
 
 TZInfo::ZoneinfoTimezoneInfo::MAX_TIMESTAMP = T.let(T.unsafe(nil), Integer)
 
