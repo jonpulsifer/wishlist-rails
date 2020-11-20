@@ -50,9 +50,9 @@ class GiftsController < ApplicationController
       .where(family_id: current_user.family_ids)
       .where.not(user_id: current_user.id)
       .joins(:user)
-      .order(:family_id, :name)
+      .order(:family_id, '`users`.`name`')
       .each do |family_user|
-        family_user.user.unclaimed_gifts.order(:name).each do |gift|
+        family_user.user.unclaimed_gifts.each do |gift|
           @gifts << gift
         end
       end
@@ -66,9 +66,9 @@ class GiftsController < ApplicationController
       .where(family_id: current_user.family_ids)
       .where.not(user_id: current_user.id)
       .joins(:user)
-      .order(:family_id, :name)
+      .order(:family_id, '`users`.`name`')
       .each do |family_user|
-        family_user.user.claimed_gifts.order(:name).each do |gift|
+        family_user.user.claimed_gifts.each do |gift|
           @gifts << gift unless gift.claimed_by != current_user.id
         end
       end

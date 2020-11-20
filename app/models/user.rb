@@ -2,6 +2,7 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  default_scope { order(name: :asc) }
   has_secure_password
   has_many :gifts, dependent: :destroy
   has_many :family_users, dependent: :destroy

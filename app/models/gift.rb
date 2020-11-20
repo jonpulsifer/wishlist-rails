@@ -3,8 +3,10 @@
 
 class Gift < ApplicationRecord
   belongs_to :user
+  default_scope { order(name: :asc) }
 
   validates :name, presence: true
+
   scope :claimed, -> { where("claimed_by IS NOT NULL") }
   scope :unclaimed, -> { where("claimed_by IS NULL") }
   scope :claimed_by_user, ->(user) { where("claimed_by = ? ", user) }
