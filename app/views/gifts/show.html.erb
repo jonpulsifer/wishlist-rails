@@ -12,7 +12,11 @@
       <h3 class="mdl-card__title-text"><%= (current_user.id == @gift.user.id ? 'Your' : @gift.user.name.titleize + "'s") + " Gifts" %></h3>
     </div>
     <div class="mdl-card__supporting-text">
-      <%= render "gift-list", gifts: @gift.user.gifts.visible(current_user) %>
+      <% if current_user == @gift.user %>
+        <%= render "gift-list", gifts: @gift.user.gifts %>
+      <% else %>
+        <%= render "gift-list", gifts: @gift.user.gifts.visible(current_user) %>
+      <% end %>
     </div>
     <div class="mdl-card__actions mdl-card--border">
       <% if current_user == @gift.user && !current_page?(new_gift_path) %>
