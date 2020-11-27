@@ -3,6 +3,7 @@
 
 class Gift < ApplicationRecord
   belongs_to :user
+  has_many :families, through: :user
   default_scope { order(name: :asc) }
 
   validates :name, presence: true
