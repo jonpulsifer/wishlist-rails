@@ -203,10 +203,10 @@ GEM
       thor (~> 1.0)
       tilt (~> 2.0)
       yard (~> 0.9, >= 0.9.24)
-    sorbet (0.5.6111)
-      sorbet-static (= 0.5.6111)
+    sorbet (0.5.6203)
+      sorbet-static (= 0.5.6203)
     sorbet-runtime (0.5.6111)
-    sorbet-static (0.5.6111-universal-darwin-14)
+    sorbet-static (0.5.6203-universal-darwin-14)
     spoom (1.0.6)
       colorize
       sorbet (~> 0.5.5)
