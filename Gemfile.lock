@@ -118,7 +118,7 @@ GEM
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
     parallel (1.20.0)
-    parlour (4.0.1)
+    parlour (5.0.0)
       commander (~> 4.5)
       parser
       rainbow (~> 3.0)
@@ -207,7 +207,7 @@ GEM
       sorbet-static (= 0.5.6111)
     sorbet-runtime (0.5.6111)
     sorbet-static (0.5.6111-universal-darwin-14)
-    spoom (1.0.6)
+    spoom (1.0.7)
       colorize
       sorbet (~> 0.5.5)
       sorbet-runtime
@@ -223,7 +223,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    tapioca (0.4.9)
+    tapioca (0.4.13)
       parlour (>= 2.1.0)
       pry (>= 0.12.2)
       sorbet-runtime
