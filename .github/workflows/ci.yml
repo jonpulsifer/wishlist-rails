@@ -2,7 +2,7 @@ name: ci
 on: [push]
 jobs:
   docker:
-    name: Docker CI
+    name: Docker
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
     #   with:
     #     image-name: jonpulsifer/wishlist-rails:${{ github.sha }}
   ruby:
-    name: Ruby CI
+    name: Ruby
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
