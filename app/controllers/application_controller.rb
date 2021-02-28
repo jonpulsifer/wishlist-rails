@@ -13,7 +13,10 @@ class ApplicationController < ActionController::Base
   private
 
   def require_login
-    unless logged_in?
+    puts "_--_______---PARAMS"
+    puts params[:controller].to_s
+
+    unless logged_in? || params[:controller].to_s.match(/^quilt/)
       redirect_to(login_url)
     end
   end

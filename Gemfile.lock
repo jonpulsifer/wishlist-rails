@@ -94,6 +94,10 @@ GEM
     ffi (1.14.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    graphiql-rails (1.7.0)
+      railties
+      sprockets-rails
+    graphql (1.12.5)
     highline (2.0.3)
     i18n (1.8.9)
       concurrent-ruby (~> 1.0)
@@ -139,8 +143,15 @@ GEM
     public_suffix (4.0.6)
     puma (5.2.1)
       nio4r (~> 2.0)
+    quilt_rails (3.4.2)
+      activesupport (>= 3.2.0)
+      rails-reverse-proxy (~> 0.9.0)
+      railties (>= 3.2.0)
+      statsd-instrument (>= 2.8.0)
     racc (1.5.2)
     rack (2.2.3)
+    rack-proxy (0.6.5)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.1.3)
@@ -163,6 +174,11 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
+    rails-reverse-proxy (0.9.1)
+      addressable
+      rack
+      rack-proxy
+      rails
     railties (6.1.3)
       actionpack (= 6.1.3)
       activesupport (= 6.1.3)
@@ -232,6 +248,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    statsd-instrument (3.0.2)
     tapioca (0.4.15)
       bundler (>= 1.17.3)
       parlour (>= 2.1.0)
@@ -273,10 +290,13 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   faker
+  graphiql-rails
+  graphql (~> 1.12)
   jbuilder (~> 2.10)
   listen (~> 3.3)
   mysql2
   puma (~> 5.0)
+  quilt_rails (~> 3.4)
   rails (~> 6.1.3)
   rubocop
   rubocop-shopify

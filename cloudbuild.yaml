@@ -1,23 +1,31 @@
 steps:
-# pull kubeconfig
-- name: 'gcr.io/cloud-builders/gsutil'
-  args: ['cp', 'gs://cloud-lab/kubeconfig.yml', '.']
-  waitFor: ['-']
+  # pull kubeconfig
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['cp', 'gs://cloud-lab/kubeconfig.yml', '.']
+    waitFor: ['-']
 
-# build wishlist
-- name: 'gcr.io/kaniko-project/executor:latest'
-  id: image-push
-  args:
-  - --destination=gcr.io/$PROJECT_ID/wishlist:$COMMIT_SHA
-  - --cache=true
-# deploy wishlist
-- name: 'gcr.io/trusted-builds/krane'
-  args: ['krane', 'deploy', '-f', 'config/deploy/production', '${_NAMESPACE}', '${_CONTEXT}']
-  waitFor: ['image-push']
-  env:
-  - 'KUBECONFIG=kubeconfig.yml'
-  - 'ENVIRONMENT=production'
-  - 'REVISION=$COMMIT_SHA'
+  # build wishlist
+  - name: 'gcr.io/kaniko-project/executor:latest'
+    id: image-push
+    args:
+      - --destination=gcr.io/$PROJECT_ID/wishlist:$COMMIT_SHA
+      - --cache=true
+  # deploy wishlist
+  - name: 'gcr.io/trusted-builds/krane'
+    args:
+      [
+        'krane',
+        'deploy',
+        '-f',
+        'config/deploy/production',
+        '${_NAMESPACE}',
+        '${_CONTEXT}',
+      ]
+    waitFor: ['image-push']
+    env:
+      - 'KUBECONFIG=kubeconfig.yml'
+      - 'ENVIRONMENT=production'
+      - 'REVISION=$COMMIT_SHA'
 
 substitutions:
   _CONTEXT: gke_kubesec_us-east4-b_lab
