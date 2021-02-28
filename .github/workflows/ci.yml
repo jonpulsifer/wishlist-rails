@@ -1,11 +1,14 @@
-name: docker build
+name: ci
 on: [push]
 jobs:
-  build:
+  docker:
+    name: Docker CI
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build docker image
+    - name: Lint Dockerfile
+      uses: Shopify/gh-action-hadolint@master
+    - name: Build Dockerfile
       env:
         RAILS_ENV: production
       run: |
@@ -15,7 +18,7 @@ jobs:
     #   uses: Azure/container-scan@v0
     #   with:
     #     image-name: jonpulsifer/wishlist-rails:${{ github.sha }}
-  ci:
+  ruby:
     name: Ruby CI
     runs-on: ubuntu-latest
     steps:
