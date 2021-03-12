@@ -230,7 +230,7 @@ GEM
       yard (~> 0.9, >= 0.9.24)
     sorbet (0.5.6305)
       sorbet-static (= 0.5.6305)
-    sorbet-runtime (0.5.6305)
+    sorbet-runtime (0.5.6338)
     sorbet-static (0.5.6305-universal-darwin-14)
     spoom (1.0.9)
       colorize
