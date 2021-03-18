@@ -207,7 +207,7 @@ GEM
       parser (>= 2.7.1.5)
     rubocop-shopify (1.0.7)
       rubocop (~> 1.4)
-    rubocop-sorbet (0.5.1)
+    rubocop-sorbet (0.6.1)
       rubocop
     ruby-progressbar (1.11.0)
     rubyzip (2.3.0)
