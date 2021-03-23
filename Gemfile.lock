@@ -130,7 +130,7 @@ GEM
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     parallel (1.20.1)
-    parlour (5.0.0)
+    parlour (6.0.0)
       commander (~> 4.5)
       parser
       rainbow (~> 3.0)
@@ -249,7 +249,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     statsd-instrument (3.0.2)
-    tapioca (0.4.15)
+    tapioca (0.4.18)
       bundler (>= 1.17.3)
       parlour (>= 2.1.0)
       pry (>= 0.12.2)
