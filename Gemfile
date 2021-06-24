@@ -69,7 +69,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'sorbet-runtime'
 
-gem "quilt_rails", "~> 3.4"
+gem "quilt_rails", "~> 3.5"
 
 gem "graphql", "~> 1.12"
 gem 'graphiql-rails', group: :development
