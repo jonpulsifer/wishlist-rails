@@ -97,7 +97,7 @@ GEM
     graphiql-rails (1.7.0)
       railties
       sprockets-rails
-    graphql (1.12.5)
+    graphql (1.12.13)
     highline (2.0.3)
     i18n (1.8.9)
       concurrent-ruby (~> 1.0)
@@ -232,6 +232,13 @@ GEM
       sorbet-static (= 0.5.6305)
     sorbet-runtime (0.5.6305)
     sorbet-static (0.5.6305-universal-darwin-14)
+    sorbet-static (0.5.6305-universal-darwin-15)
+    sorbet-static (0.5.6305-universal-darwin-16)
+    sorbet-static (0.5.6305-universal-darwin-17)
+    sorbet-static (0.5.6305-universal-darwin-18)
+    sorbet-static (0.5.6305-universal-darwin-19)
+    sorbet-static (0.5.6305-universal-darwin-20)
+    sorbet-static (0.5.6305-x86_64-linux)
     spoom (1.0.9)
       colorize
       sorbet (~> 0.5.5)
